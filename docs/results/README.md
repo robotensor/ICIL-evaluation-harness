@@ -7,3 +7,4 @@ report names the policy, track, preset, registry hash and harness version; the f
 | file | policy | track / suite | preset |
 |---|---|---|---|
 | `2026-09-04-bpp-libero-goal-configuration-quick.md` | BPP (`austinpatel/libero`) | configuration / libero_goal | quick (10 tasks × 10 init states × 8 conditions) |
+| `2026-09-04-bpp-libero-spatial-configuration-quick.md` | BPP (`austinpatel/libero`) | configuration / libero_spatial | quick (10 tasks × 10 init states × 7 conditions) |

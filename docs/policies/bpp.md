@@ -33,6 +33,27 @@ K=8 fits for a few short tasks only (`icil-eval capabilities`). K>1 is out of di
 checkpoint (trained with exactly one demonstration) and is reported as such. K=0 is a single
 all-zero, fully masked chunk (the encoder attends only to its 4 attention-sink tokens).
 
+### libero_spatial: why the controls matter
+
+Same preset on libero_spatial (10 tasks × 10 initial states; all ten tasks share one layout with
+two identical black bowls and the goal "bowl_1 on the plate", so `chance_success = 0.5`):
+
+| condition | success [Wilson 95%] |
+|---|---|
+| `k0` (blank prompt) | 80.0% [71.1%, 86.7%] |
+| `k1` | 96.0% [90.2%, 98.4%] |
+| `k2` | 92.0% [85.0%, 95.9%] |
+| `k4` | 98.0% [93.0%, 99.4%] |
+| `k1.shuffled_chunks` | 92.0% [85.0%, 95.9%] |
+| `k1.wrong_task` | 55.0% [45.2%, 64.4%] |
+| `k4.wrong_task` | 70.0% [60.4%, 78.1%] |
+
+Raw success (96%) overstates in-context learning here: a policy that ignores the demonstration
+still succeeds 80% of the time from its trained prior and about 55% with a wrong demonstration
+(chance 50%). The paired wrong-context gap is Δ_context@1 = +41 pp (n=100, McNemar p ≈ 6e-11),
++41 pp above chance; at K=4 the gap is +28 pp. K=8 is `unsupported` for every libero_spatial task
+(demonstrations too long for the 50-chunk budget), so context AUC is null by definition.
+
 ## Render resolution
 
 vla-eval renders LIBERO at 256 px by default; BPP was trained on 128 px renders upsampled to

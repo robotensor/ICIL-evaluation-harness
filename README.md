@@ -109,9 +109,11 @@ parallel against one policy server.
 | `k1.wrong_task` | 0.0% [0.0%, 3.7%] | 100 |
 
 Δ_context@1 (paired on identical initial states) = +97 pp, n=100, McNemar p ≈ 1e-29; context AUC
-80%. The checkpoint was trained on every LIBERO task, so all rows are tagged
-`query_exposure = seen`; the wrong-context gap, not raw success, is the in-context-learning
-evidence. Full table: `docs/policies/bpp.md`.
+80%. On libero_spatial the same policy reaches 96% at k1 but already 80% with no context and 55%
+with a wrong demonstration (chance 50%), so its honest in-context effect there is +41 pp. The
+checkpoint was trained on every LIBERO task, so all rows are tagged `query_exposure = seen`; the
+wrong-context gap, not raw success, is the in-context-learning evidence. Full tables:
+`docs/policies/bpp.md`, `docs/results/`.
 
 ## Standard documents
 
