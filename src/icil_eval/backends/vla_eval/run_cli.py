@@ -88,9 +88,16 @@ def run_run(args: argparse.Namespace) -> int:
     if args.no_docker:
         base.append("--no-docker")
     commands = []
+    eval_id = None
     if args.shards > 1:
+        import uuid
+
+        eval_id = str(uuid.uuid4())  # shards share one recording database (vla-eval convention)
         for i in range(args.shards):
-            commands.append(base + ["--shard-id", str(i), "--num-shards", str(args.shards)])
+            commands.append(
+                base
+                + ["--shard-id", str(i), "--num-shards", str(args.shards), "--eval-id", eval_id]
+            )
     else:
         commands.append(base)
     print(f"config: {cfg_path}")
@@ -105,7 +112,7 @@ def run_run(args: argparse.Namespace) -> int:
     for p in procs:
         rc = max(rc, p.wait())
     if args.shards > 1 and rc == 0:
-        merge = [vla_eval, "merge", "-c", str(cfg_path)]
+        merge = [vla_eval, "merge", "-c", str(cfg_path), "--eval-id", str(eval_id)]
         print("$", " ".join(merge))
         rc = subprocess.call(merge, cwd=str(run_dir), env=env)
     print(f"results: {run_dir / 'results'}", file=sys.stderr)

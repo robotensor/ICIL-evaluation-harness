@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from icil_eval.context.types import Condition
 from icil_eval.registry.io import Registry
@@ -77,6 +77,61 @@ def find_aggregates(results_dir: Path) -> List[Path]:
     return sorted(Path(results_dir).glob("*_aggregate.json"))
 
 
+def load_sqlite_episodes(results_dir: Path) -> List[Dict[str, Any]]:
+    """Episode records from every ``recording-*.sqlite`` written by vla-eval shards.
+
+    Each shard writes its own database; the union (deduplicated by ``eid``) is complete even when
+    vla-eval's per-shard aggregate files overwrote each other. Records are shaped like the
+    aggregate JSON's ``tasks[].episodes[]`` entries plus ``benchmark`` and ``eval_id``.
+    """
+    import sqlite3
+
+    records: Dict[str, Dict[str, Any]] = {}
+    for db in sorted(Path(results_dir).glob("recording-*.sqlite")):
+        try:
+            con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+            meta = {}
+            for eval_id, safe_name, metadata in con.execute(
+                "select eval_id, safe_name, metadata from eval_metadata"
+            ):
+                meta[eval_id] = {"safe_name": safe_name, "metadata": json.loads(metadata or "{}")}
+            cur = con.execute(
+                "select eid, eval_id, task_name, episode_id, status, metrics, steps, elapsed_sec, "
+                "context, failure_reason from episode_results"
+            )
+            for (
+                eid,
+                eval_id,
+                task_name,
+                episode_id,
+                _status,
+                metrics,
+                steps,
+                elapsed,
+                ctx,
+                reason,
+            ) in cur:
+                context = json.loads(ctx or "{}")
+                rec: Dict[str, Any] = {
+                    **context,
+                    "eid": eid,
+                    "eval_id": eval_id,
+                    "episode_id": episode_id,
+                    "name": context.get("name", task_name),
+                    "metrics": json.loads(metrics or "{}"),
+                    "steps": steps,
+                    "elapsed_sec": elapsed,
+                    "failure_reason": reason,
+                    "benchmark": meta.get(eval_id, {}).get("safe_name"),
+                    "eval_metadata": meta.get(eval_id, {}).get("metadata"),
+                }
+                records[eid] = rec
+            con.close()
+        except sqlite3.Error:
+            continue
+    return list(records.values())
+
+
 def _resolve_task_id(
     rec: Dict[str, Any], registry: Registry, provider_hint: Optional[str]
 ) -> Optional[str]:
@@ -97,17 +152,10 @@ def _resolve_task_id(
     return matches[0] if len(matches) == 1 else None
 
 
-def ingest(
+def _records_from_aggregates(
     results_dir: Path,
-    registry: Registry,
-    server_logs: Optional[Iterable[Path]] = None,
-    default_track: str = "configuration",
-    default_condition: str = "k1",
-) -> Dict[str, Any]:
-    """Return ``{"rows": [EpisodeRow], "configs": [...], "server_meta": {...} | None}``."""
-    server_rows = load_server_log(server_logs or [])
-    server_meta = load_server_meta(server_logs or [])
-    rows: List[EpisodeRow] = []
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    records: List[Dict[str, Any]] = []
     configs: List[Dict[str, Any]] = []
     for path in find_aggregates(results_dir):
         with open(path, encoding="utf-8") as f:
@@ -120,57 +168,94 @@ def ingest(
                 "seed": agg.get("seed"),
             }
         )
-        provider_hint = (agg.get("config") or {}).get("params", {}).get("provider")
         for task_block in agg.get("tasks", []):
             for rec in task_block.get("episodes", []):
-                task_id = _resolve_task_id(rec, registry, provider_hint)
-                if task_id is None:
-                    continue
-                task = registry.tasks[task_id]
-                cond_name = rec.get("icil_condition") or default_condition
-                cond = Condition.parse(cond_name)
-                metrics = rec.get("metrics") or {}
-                srv = server_rows.get(rec.get("eid") or "")
-                ctx = (srv or {}).get("context") or {}
-                row = EpisodeRow(
-                    task_id=task_id,
-                    provider=task.provider,
-                    suite=task.suite,
-                    track=rec.get("icil_track") or default_track,
-                    condition=cond_name,
-                    k=ctx.get("k", cond.k),
-                    control=cond.control,
-                    episode_idx=int(rec.get("episode_idx", rec.get("episode_id", 0))),
-                    success=None
-                    if metrics.get("success") is None
-                    else bool(metrics.get("success")),
-                    progress=metrics.get("progress"),
-                    steps=rec.get("steps"),
-                    elapsed_s=rec.get("elapsed_sec"),
-                    eid=rec.get("eid"),
-                    benchmark=agg.get("benchmark"),
-                )
-                if rec.get("failure_reason"):
-                    row.status, row.error = "error", str(rec.get("failure_reason"))
-                if srv:
-                    row.status = (
-                        srv.get("status", row.status) if srv.get("status") != "ok" else row.status
-                    )
-                    row.error = srv.get("error") or row.error
-                    row.relation = ctx.get("relation")
-                    row.transform = ctx.get("transform")
-                    row.language = ctx.get("language")
-                    row.context_refs = ctx.get("refs") or []
-                    row.context_hash = ctx.get("context_hash")
-                    row.context_task_id = ctx.get("context_task_id")
-                    row.k_max = srv.get("k_max")
-                    row.adaptation_latency_s = srv.get("adaptation_latency_s")
-                    row.control_latency_s = (srv.get("control_latency_s") or {}).get("median")
-                    row.min_context_init_l2 = srv.get("min_context_init_l2")
-                if row.status in ("unsupported", "error"):
-                    row.success = None  # hold actions are not a policy outcome
-                    row.progress = None
-                rows.append(row)
+                records.append({**rec, "benchmark": agg.get("benchmark")})
+    return records, configs
+
+
+def ingest(
+    results_dir: Path,
+    registry: Registry,
+    server_logs: Optional[Iterable[Path]] = None,
+    default_track: str = "configuration",
+    default_condition: str = "k1",
+) -> Dict[str, Any]:
+    """Return ``{"rows": [EpisodeRow], "configs": [...], "server_meta": {...} | None}``.
+
+    Episode records come from the per-shard ``recording-*.sqlite`` databases when they hold more
+    episodes than the aggregate JSON (vla-eval's per-shard aggregates can overwrite each other),
+    otherwise from the aggregate JSON. Server-log rows are joined by episode id.
+    """
+    server_rows = load_server_log(server_logs or [])
+    server_meta = load_server_meta(server_logs or [])
+    records, configs = _records_from_aggregates(results_dir)
+    sqlite_records = load_sqlite_episodes(results_dir)
+    if len(sqlite_records) > len(records):
+        records = sqlite_records
+        if not configs and sqlite_records:
+            md = sqlite_records[0].get("eval_metadata") or {}
+            configs.append(
+                {
+                    "file": "recording-*.sqlite",
+                    "config": md.get("config"),
+                    "server_info": md.get("server_info"),
+                    "seed": None,
+                }
+            )
+    provider_hint: Optional[str] = None
+    for cfg in configs:
+        provider_hint = provider_hint or ((cfg.get("config") or {}).get("params") or {}).get(
+            "provider"
+        )
+
+    rows: List[EpisodeRow] = []
+    for rec in records:
+        task_id = _resolve_task_id(rec, registry, provider_hint)
+        if task_id is None:
+            continue
+        task = registry.tasks[task_id]
+        metrics = rec.get("metrics") or {}
+        cond_name = rec.get("icil_condition") or metrics.get("icil_condition") or default_condition
+        cond = Condition.parse(cond_name)
+        srv = server_rows.get(rec.get("eid") or "")
+        ctx = (srv or {}).get("context") or {}
+        row = EpisodeRow(
+            task_id=task_id,
+            provider=task.provider,
+            suite=task.suite,
+            track=rec.get("icil_track") or metrics.get("icil_track") or default_track,
+            condition=cond_name,
+            k=ctx.get("k", cond.k),
+            control=cond.control,
+            episode_idx=int(rec.get("episode_idx", rec.get("episode_id", 0))),
+            success=None if metrics.get("success") is None else bool(metrics.get("success")),
+            progress=metrics.get("progress"),
+            steps=rec.get("steps"),
+            elapsed_s=rec.get("elapsed_sec"),
+            eid=rec.get("eid"),
+            benchmark=rec.get("benchmark"),
+        )
+        if rec.get("failure_reason"):
+            row.status, row.error = "error", str(rec.get("failure_reason"))
+        if srv:
+            if srv.get("status") != "ok":
+                row.status = srv.get("status", row.status)
+            row.error = srv.get("error") or row.error
+            row.relation = ctx.get("relation")
+            row.transform = ctx.get("transform")
+            row.language = ctx.get("language")
+            row.context_refs = ctx.get("refs") or []
+            row.context_hash = ctx.get("context_hash")
+            row.context_task_id = ctx.get("context_task_id")
+            row.k_max = srv.get("k_max")
+            row.adaptation_latency_s = srv.get("adaptation_latency_s")
+            row.control_latency_s = (srv.get("control_latency_s") or {}).get("median")
+            row.min_context_init_l2 = srv.get("min_context_init_l2")
+        if row.status in ("unsupported", "error"):
+            row.success = None  # hold actions are not a policy outcome
+            row.progress = None
+        rows.append(row)
     return {"rows": rows, "configs": configs, "server_meta": server_meta}
 
 

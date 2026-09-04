@@ -208,6 +208,12 @@ class ICILModelServer(PredictModelServer):  # type: ignore[misc]
             )
 
         k_max = self.k_max_for(task, track.k_sweep)
+        if condition.wrong_task:
+            # the wrong-task context is drawn from other tasks: their pools bound K as well, so the
+            # paired correct/wrong comparison at kmax is defined for every possible draw
+            entry = self.registry.pool(track_name, task.task_id)
+            for wrong_id, _rel in entry.wrong if entry else []:
+                k_max = min(k_max, self.k_max_for(self.registry.tasks[wrong_id], track.k_sweep))
         session.k_max = k_max
         condition = condition.resolve(k_max)
         if condition.k > k_max:
