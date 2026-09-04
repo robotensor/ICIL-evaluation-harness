@@ -8,3 +8,4 @@ report names the policy, track, preset, registry hash and harness version; the f
 |---|---|---|---|
 | `2026-09-04-bpp-libero-goal-configuration-quick.md` | BPP (`austinpatel/libero`) | configuration / libero_goal | quick (10 tasks × 10 init states × 8 conditions) |
 | `2026-09-04-bpp-libero-spatial-configuration-quick.md` | BPP (`austinpatel/libero`) | configuration / libero_spatial | quick (10 tasks × 10 init states × 7 conditions) |
+| `2026-09-04-bpp-libero-90-scene-smoke.md` | BPP (`austinpatel/libero`) | scene / libero_90 | smoke (2 tasks × 5 init states × {k1, k1.wrong_task}) |

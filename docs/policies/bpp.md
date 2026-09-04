@@ -54,6 +54,15 @@ still succeeds 80% of the time from its trained prior and about 55% with a wrong
 +41 pp above chance; at K=4 the gap is +28 pp. K=8 is `unsupported` for every libero_spatial task
 (demonstrations too long for the 50-chunk budget), so context AUC is null by definition.
 
+### scene track (smoke)
+
+Two libero_90 KITCHEN_SCENE10 queries with context demonstrations from other layouts sharing the
+instruction: `k1` 10/10. The wrong-task control (different instruction, different layout) separates
+the tasks: `put the black bowl in the top drawer` fails 4/5, while `close the top drawer` succeeds
+5/5 regardless of the demonstration, i.e. that task is solvable from the scene alone. Δ_context@1 =
++40 pp (n=10, McNemar p = 0.125); the smoke size is too small for significance and exists to
+exercise the track. Per-task wrong-context rows are the signal to read here.
+
 ## Render resolution
 
 vla-eval renders LIBERO at 256 px by default; BPP was trained on 128 px renders upsampled to
