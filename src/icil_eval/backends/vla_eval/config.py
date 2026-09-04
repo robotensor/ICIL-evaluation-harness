@@ -41,6 +41,7 @@ def build_run_config(
     docker_image: Optional[str] = None,
     docker_volumes: Optional[Sequence[str]] = None,
     docker_env: Optional[Sequence[str]] = None,
+    docker_gpus: Optional[str] = None,
     registry: Optional[Registry] = None,
 ) -> Dict[str, Any]:
     if preset not in PRESETS:
@@ -108,6 +109,8 @@ def build_run_config(
             docker["volumes"] = list(docker_volumes)
         if docker_env:
             docker["env"] = list(docker_env)
+        if docker_gpus:
+            docker["gpus"] = str(docker_gpus)
         cfg["docker"] = docker
     return cfg
 

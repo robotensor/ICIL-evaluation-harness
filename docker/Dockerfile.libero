@@ -4,7 +4,7 @@
 ARG BASE=ghcr.io/allenai/vla-evaluation-harness/libero:0.5.0
 FROM ${BASE}
 ARG WHEEL
-COPY ${WHEEL} /tmp/icil_eval.whl
+COPY ${WHEEL} /tmp/wheels/
 # --no-deps: the image already pins numpy/pyyaml; container-side modules need nothing else.
-RUN pip install --no-deps /tmp/icil_eval.whl \
+RUN pip install --no-deps /tmp/wheels/*.whl \
     && python -c "import icil_eval.backends.vla_eval.benchmark, icil_eval.backends.vla_eval.libero; from icil_eval.registry.io import load_registry; print('icil_eval ok, tasks:', len(load_registry().tasks))"

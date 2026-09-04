@@ -29,6 +29,8 @@ that field and is listed here.
 - vla-eval benchmark wrapper `ICILBenchmark` (task x condition expansion, unique names, flat
   `icil_*` fields, recorder hand-off, goal-predicate progress) and `ICILLIBEROBenchmark`
   (configurable render resolution); run presets `smoke`/`quick`/`full`; CLI `icil-eval run`.
+- Docker: `docker/Dockerfile.libero` + `docker/build.sh` build `icil-eval/libero:dev` on top of
+  vla-eval's LIBERO image; `icil-eval run --docker-image … --gpus …`.
 - Scoring (S5): paired statistics (Wilson CI, paired differences with McNemar, task-cluster
   bootstrap), model profile with coverage and exposure tags, `icil_results.json` schema, markdown
   report; CLI `icil-eval report`.

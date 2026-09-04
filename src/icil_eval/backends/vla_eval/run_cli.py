@@ -43,6 +43,9 @@ def add_run_arguments(parser: argparse.ArgumentParser) -> None:
     )
     parser.add_argument("--docker-env", action="append", default=[], help="extra docker -e vars")
     parser.add_argument(
+        "--gpus", help="GPUs for the benchmark container (docker --gpus), e.g. all or 0"
+    )
+    parser.add_argument(
         "--dry-run", action="store_true", help="write the config and print the command only"
     )
 
@@ -73,6 +76,7 @@ def run_run(args: argparse.Namespace) -> int:
         docker_image=args.docker_image,
         docker_volumes=args.docker_volume or None,
         docker_env=args.docker_env or None,
+        docker_gpus=args.gpus,
     )
     cfg_path = write_run_config(cfg, run_dir / "config.yaml")
     exe = Path(sys.executable).parent / "vla-eval"  # prefer the interpreter's own environment
