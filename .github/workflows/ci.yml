@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv python install 3.10
+      - run: uv venv --python 3.10 && uv pip install -e ".[dev,schema]"
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv python install ${{ matrix.python }}
+      - run: uv venv --python ${{ matrix.python }} && uv pip install -e ".[dev,schema]"
+      - run: uv run pytest -m "not sim and not gpu and not slow"
+
+  container-py38:
+    # Modules that execute inside simulator containers must work on Python 3.8 + numpy 1.22.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv python install 3.8
+      - run: uv venv --python 3.8 && uv pip install -e . "numpy==1.22.4" pytest
+      - run: uv run pytest -m container tests/container

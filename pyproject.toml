@@ -1,0 +1,98 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "icil-evaluation-harness"
+dynamic = ["version"]
+description = "One global benchmark standard for In-Context Imitation Learning (ICIL), built on top of existing robot benchmarks."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [{ name = "ICIL-evaluation-harness contributors" }]
+keywords = [
+  "robotics",
+  "imitation-learning",
+  "in-context-learning",
+  "benchmark",
+  "evaluation",
+  "lerobot",
+  "libero",
+  "vla",
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# Core stays tiny and Python-3.8 compatible: it must import inside the
+# vla-eval simulator containers (Python 3.8, numpy 1.22).
+dependencies = [
+  "numpy>=1.22",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+# JSON-Schema validation of registry, results and policy cards.
+schema = ["jsonschema>=4.17"]
+# Serve an ICIL policy to the vla-eval rollout backend (WebSocket + msgpack).
+server = ["vla-eval==0.5.0", "h5py>=3.7"]
+# Behavior Prompting Policy reference wrapper (runs inside BPP's own environment;
+# torch/behavior_prompting are expected to be present there).
+bpp = ["dill>=0.3.6", "hydra-core>=1.2,<1.4", "omegaconf>=2.3", "h5py>=3.7"]
+# Scoring and reports.
+report = ["jsonschema>=4.17", "rich>=13"]
+# Demonstration export to LeRobotDataset v3 (LeRobot needs Python >= 3.12).
+lerobot = ["lerobot[dataset]>=0.6.1; python_version >= '3.12'", "h5py>=3.7"]
+dev = [
+  "pytest>=7",
+  "pytest-cov>=4",
+  "ruff>=0.6",
+  "jsonschema>=4.17",
+  "h5py>=3.7",
+]
+
+[project.scripts]
+icil-eval = "icil_eval.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/robofluent/ICIL-evaluation-harness"
+Documentation = "https://github.com/robofluent/ICIL-evaluation-harness/tree/main/docs"
+Issues = "https://github.com/robofluent/ICIL-evaluation-harness/issues"
+
+[tool.hatch.version]
+path = "src/icil_eval/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/icil_eval"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/icil_eval", "tests", "docs", "README.md", "LICENSE", "CHANGELOG.md"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "W", "UP"]
+# Keep typing.List/Dict/Optional: annotations must evaluate at runtime on Python 3.8.
+ignore = ["UP006", "UP007", "UP035", "UP045"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["icil_eval"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -ra"
+markers = [
+  "container: Python-3.8-compatible tests for modules that run inside simulator containers",
+  "sim: requires a simulator (LIBERO/MuJoCo) to be installed",
+  "gpu: requires a CUDA GPU",
+  "slow: long-running",
+]
