@@ -42,7 +42,23 @@ gap, not raw success.
 
 ## Reference numbers
 
-Smoke preset (libero_goal, 2 tasks × 5 initial states, 128 px): `k1` 10/10, `k1.wrong_task` 0/10,
-Δ_context@1 = +100 pp (McNemar p = 0.002); adaptation ≈ 0.03 s (0.5 s first call), ≈ 0.10 s per
-16-step action chunk on an L40S. Native BPP reference on LIBERO-Gen spatial-combination
-(BPP's own runner): correct demo 0.776 vs wrong demo 0.124 over 10 held-out tasks × 50 episodes.
+Quick preset, `configuration` track, libero_goal (10 tasks × 10 initial states per condition,
+128 px render, one L40S, 6 vla-eval shards, 2026-09-04):
+
+| condition | success [Wilson 95%] | n |
+|---|---|---|
+| `k0` (blank prompt) | 8.0% [4.1%, 15.0%] | 100 |
+| `k1` | 97.0% [91.5%, 99.0%] | 100 |
+| `k2` | 97.0% [91.5%, 99.0%] | 100 |
+| `k4` | 98.8% [93.3%, 99.8%] | 80 (8 tasks) |
+| `k8` | 100.0% [88.6%, 100.0%] | 30 (3 tasks) |
+| `k1.shuffled_chunks` | 88.0% [80.2%, 93.0%] | 100 |
+| `k1.wrong_task` | 0.0% [0.0%, 3.7%] | 100 |
+| `k{2,4,8}.wrong_task` | 0.0% | 20 / 50 / 20 (+10 unsupported) |
+
+Δ_context@1 = +97.0 pp (paired, n=100, 97 discordant, McNemar p ≈ 1e-29); order sensitivity@1 =
++9.0 pp (p = 0.012); context AUC (mean SR over K ∈ {0,1,2,4,8}) = 80.2%; adaptation ≈ 0.04 s
+(0.15 s at K=8), ≈ 0.13 s per 16-step action chunk. All rows `query_exposure = seen`. K>1 is out
+of distribution for this single-demonstration checkpoint yet does not hurt; the wrong-context gap
+is the ICIL evidence. Native BPP reference on LIBERO-Gen spatial-combination (BPP's own runner):
+correct demo 0.776 vs wrong demo 0.124 over 10 held-out tasks × 50 episodes.

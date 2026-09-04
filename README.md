@@ -97,16 +97,21 @@ parallel against one policy server.
 
 ### What a result looks like
 
-`icil-eval report` on the smoke preset (BPP-LIBERO checkpoint, libero_goal, 2 tasks):
+`icil-eval report` on the quick preset (BPP-LIBERO checkpoint, `configuration` track, libero_goal,
+10 tasks × 10 initial states per condition):
 
 | condition | success [Wilson 95%] | n |
 |---|---|---|
-| `k1` | 100.0% [72.2%, 100.0%] | 10/10 |
-| `k1.wrong_task` | 0.0% [0.0%, 27.8%] | 10/10 |
+| `k0` | 8.0% [4.1%, 15.0%] | 100 |
+| `k1` | 97.0% [91.5%, 99.0%] | 100 |
+| `k4` | 98.8% [93.3%, 99.8%] | 80 |
+| `k1.shuffled_chunks` | 88.0% [80.2%, 93.0%] | 100 |
+| `k1.wrong_task` | 0.0% [0.0%, 3.7%] | 100 |
 
-Δ_context@1 (paired on identical initial states) = +100 pp, n=10, McNemar p=0.002. The checkpoint
-was trained on every LIBERO task, so all rows are tagged `query_exposure = seen`; the wrong-context
-gap, not raw success, is the in-context-learning evidence.
+Δ_context@1 (paired on identical initial states) = +97 pp, n=100, McNemar p ≈ 1e-29; context AUC
+80%. The checkpoint was trained on every LIBERO task, so all rows are tagged
+`query_exposure = seen`; the wrong-context gap, not raw success, is the in-context-learning
+evidence. Full table: `docs/policies/bpp.md`.
 
 ## Standard documents
 
