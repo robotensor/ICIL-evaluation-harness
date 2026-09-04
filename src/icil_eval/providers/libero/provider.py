@@ -315,6 +315,7 @@ class LiberoProvider(TaskProvider):
             source_version=version,
             extra={
                 "bddl_sha256": sha256_file(bddl_path),
+                "bddl_language": problem.language,
                 "obj_of_interest": problem.obj_of_interest,
             },
         )

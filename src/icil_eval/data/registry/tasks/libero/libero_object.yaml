@@ -104,6 +104,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: df088984da13131f8332ee0f13a7896c6a97afd02ee5007a42e8fc5e0893571e
+    bddl_language: Pick the alphabet soup and place it in the basket
     obj_of_interest:
     - alphabet_soup_1
     - basket_1
@@ -208,6 +209,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 8a7e37b76fce5621e649e260dbcfcec7ce2f9a055ca09a4f1ebaf5ca74a739c2
+    bddl_language: Pick the bbq sauce and place it in the basket
     obj_of_interest:
     - bbq_sauce_1
     - basket_1
@@ -312,6 +314,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 5d8053b40ff33246fdbcc38548db84032c6bb647b4b88b6646d9cf6b73a5006c
+    bddl_language: Pick the butter and place it in the basket
     obj_of_interest:
     - butter_1
     - basket_1
@@ -416,6 +419,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 674ceabc400b7b16d46e8eaf678709d4a633235c7e0a80233775044fe38b19b0
+    bddl_language: Pick the chocolate pudding and place it in the basket
     obj_of_interest:
     - chocolate_pudding_1
     - basket_1
@@ -520,6 +524,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 7019f37ee158d67a21338a6df0c441dd8f84979b946b5e20bb49463ef0508ea2
+    bddl_language: Pick the cream cheese and place it in the basket
     obj_of_interest:
     - cream_cheese_1
     - basket_1
@@ -624,6 +629,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 4a4e545483a3fe30cf0ef3dc05bfe5e6ad5e37c94b4376dfa73fe1b60e75b319
+    bddl_language: Pick the ketchup and place it in the basket
     obj_of_interest:
     - ketchup_1
     - basket_1
@@ -728,6 +734,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 9910aabf6717e8ba3e24a3f8500d9bce9ee075346ea6961e8fd766f1257d2996
+    bddl_language: Pick the milk and place it in the basket
     obj_of_interest:
     - milk_1
     - basket_1
@@ -832,6 +839,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 6298533e7bcfb83e40779a77fda39216e8cd53f22bf1af6388585dad0abb0b50
+    bddl_language: Pick the orange juice and place it in the basket
     obj_of_interest:
     - orange_juice_1
     - basket_1
@@ -936,6 +944,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 024978e9e8f43a49b49d0965f4f426d364ce056307f0fcf5733dc4682fac437a
+    bddl_language: Pick the salad dressing and place it in the basket
     obj_of_interest:
     - salad_dressing_1
     - basket_1
@@ -1040,6 +1049,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: b1f4bb69d256a05f693838de46182bb0d3de0de68eec350df1b5b1e76f6c136d
+    bddl_language: Pick the tomato sauce and place it in the basket
     obj_of_interest:
     - tomato_sauce_1
     - basket_1

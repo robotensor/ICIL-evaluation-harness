@@ -111,6 +111,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 832ab48ec476807c767e8985666e295700f92d1f8daeae1c34eee1e75293769b
+    bddl_language: Open the middle layer of the drawer
     obj_of_interest:
     - wooden_cabinet_1_middle_region
 - task_id: libero/libero_goal/open_the_top_drawer_and_put_the_bowl_inside
@@ -222,6 +223,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 3056e4dc72ee590432cfb18c610fd077a572c8b8f256e45328031005dd0b6757
+    bddl_language: Open the top layer of the drawer and put the bowl inside
     obj_of_interest:
     - akita_black_bowl_1
     - wooden_cabinet_1_top_region
@@ -334,6 +336,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 26f22f8ad39a4b2b344b049115c45661a877fa0b4821fb78246725e7e87d8c0b
+    bddl_language: Push the plate to the front of the stove
     obj_of_interest:
     - plate_1
     - main_table_stove_front_region
@@ -446,6 +449,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 358b7781437e412c67d6a7648c1c28796b6b1bf117a25e61316cb8dfeb940e5b
+    bddl_language: Put the bowl on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -558,6 +562,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: c6812d6c988be830412aa6fc4801af04d60f8c4565d2625763b6a0f2b843a87f
+    bddl_language: Put the bowl on the stove
     obj_of_interest:
     - akita_black_bowl_1
     - flat_stove_1_cook_region
@@ -670,6 +675,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 2ffba859a154f50c3c99ffb3420743fa5aa65c70bf7d4cd26f5bc81d07be5713
+    bddl_language: Put the bowl on the top of the drawer
     obj_of_interest:
     - akita_black_bowl_1
     - wooden_cabinet_1_top_side
@@ -782,6 +788,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 81c54eace32b92466598103b3b6e8435ce90f10996ef18cec4a35fe6c4d31a98
+    bddl_language: Put the cream cheese on the bowl
     obj_of_interest:
     - cream_cheese_1
     - akita_black_bowl_1
@@ -894,6 +901,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 3d3ee18139056aa3780572cde17b1c50dc20ae0d299403f65e514e8471ba0e8e
+    bddl_language: Put the wine bottle on the rack
     obj_of_interest:
     - wine_bottle_1
     - wine_rack_1_top_region
@@ -1006,6 +1014,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 2ef6f403a8451e216af44158c1a6c975cf8e5058ad02d78367ac0be443d096fe
+    bddl_language: Put the wine bottle on the top of the drawer
     obj_of_interest:
     - wine_bottle_1
     - wooden_cabinet_1_top_side
@@ -1118,5 +1127,6 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: cbd2a0514d53226c5d09e17af40b22935d4cb6ff8fdaff0d55f555de1adecc13
+    bddl_language: Turn on the stove
     obj_of_interest:
     - flat_stove_1

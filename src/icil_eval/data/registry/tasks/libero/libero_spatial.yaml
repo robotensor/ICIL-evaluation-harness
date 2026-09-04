@@ -113,6 +113,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 9b59eb1287802868ad9bc78d58e6d36d4ba31134e679cfdbdf4b0feb660c959b
+    bddl_language: Pick the akita black bowl between the plate and the ramekin and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -226,6 +227,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 5e19880ebc844f86b89f63b172aab0b7a89f85b6e6955891f544f0ea7d0795d5
+    bddl_language: Pick the akita black bowl from table center and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -339,6 +341,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 4371189e11d9fd29bb548ab9a8adcd741bb0ce41bb66c612672d0e8cb29a52a9
+    bddl_language: Pick the akita black bowl in the top layer of the wooden cabinet and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -452,6 +455,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 566c65596f3472e752e6522817bff51bbf3ce5159d7bec1d3554e5ead46b1e55
+    bddl_language: Pick the akita black bowl next to the cookies box and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -565,6 +569,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: c8fbb9effa27b947d04d26862d75273d93cac1806734e53836cd472a08aec1fe
+    bddl_language: Pick the akita black bowl next to the plate and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -678,6 +683,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 53a7516571412a2f46a27cbf8482d3b76dbad4221858c8f6b565d506c274e61d
+    bddl_language: Pick the akita black bowl next to the ramekin and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -791,6 +797,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 3d4ccf070c3d9883ae0676f2d888588f98c696ddad71b7694f47c379fc99ef36
+    bddl_language: Pick the akita black bowl on the cookies box and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -904,6 +911,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 10239815a9d18ad53e09365d453a362ee54d29ca276e04eef411cf1db8d72940
+    bddl_language: Pick the akita black bowl on the ramekin and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -1017,6 +1025,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: dd11837141a30d874ebbbfaae20e91ecc67ec85ab3872ceb4cff3abfcbef7cb0
+    bddl_language: Pick the akita black bowl on the stove and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
@@ -1130,6 +1139,7 @@ tasks:
     bddl: 1.0.1
   extra:
     bddl_sha256: 5293e759381b477e126beaf83d738542bbd4d93f522a3eead1066e612bad4a8c
+    bddl_language: Pick the akita black bowl on the wooden cabinet and place it on the plate
     obj_of_interest:
     - akita_black_bowl_1
     - plate_1
