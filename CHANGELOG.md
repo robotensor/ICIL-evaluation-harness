@@ -18,3 +18,11 @@ that field and is listed here.
   (31 queries), materialised context and wrong-task pools.
 - Context layer: `Demonstration`, `ContextRef`, `ContextSpec`, hash-seeded sampler, transforms,
   raw-hdf5 and LeRobot loaders.
+- Standard S3: `ICILPolicy` protocol (`reset` / `set_context` / `observe` / `act`), `PolicySpec`,
+  `PolicyCard`, capability math (`resolve_k_max`, worst-case demonstration lengths).
+- Behavior Prompting Policy wrapper: shared `BPPModel` (mmap checkpoint load, checkpoint-compat
+  flags, prompt encoding, per-session cache swap) and per-session `BPPPolicy` (prompt chunking,
+  K>1 concatenation within the positional budget, K=0 blank prompt, 2-frame history).
+- vla-eval backend model server `ICILModelServer`: context by reference from `EPISODE_START`
+  fields, language stripping, every observation to the policy, per-episode JSONL log; CLI
+  `icil-eval serve bpp`.

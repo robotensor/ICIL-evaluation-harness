@@ -39,7 +39,10 @@ def _build_parser() -> argparse.ArgumentParser:
     validate = registry_sub.add_parser("validate", help="validate the registry against the schemas")
     validate.add_argument("--root", help="registry root (default: packaged registry)")
 
-    sub.add_parser("serve", help="serve an ICIL policy to a rollout backend")
+    serve = sub.add_parser("serve", help="serve an ICIL policy to a rollout backend")
+    from icil_eval.backends.vla_eval.serve_cli import add_serve_arguments
+
+    add_serve_arguments(serve)
     sub.add_parser("run", help="run an evaluation through a rollout backend")
     sub.add_parser("report", help="score backend results into an ICIL results file and tables")
     return parser
@@ -76,6 +79,10 @@ def main(argv: Optional[List[str]] = None) -> int:
             return validate_registry(args.root)
         parser.parse_args([args.command, "--help"])
         return 2
+    if args.command == "serve":
+        from icil_eval.backends.vla_eval.serve_cli import run_serve
+
+        return run_serve(args)
     print(f"'{args.command}' is not implemented yet in this pre-release.", file=sys.stderr)
     return 2
 

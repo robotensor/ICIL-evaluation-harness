@@ -25,8 +25,9 @@ def rotate180(frames: np.ndarray) -> np.ndarray:
 class LiberoHdf5Store:
     """Demonstration pool of LIBERO tasks stored as the original hdf5 files under ``raw_root``."""
 
-    def __init__(self, raw_root: Path) -> None:
+    def __init__(self, raw_root: Path, libero_root: Optional[Path] = None) -> None:
         self.raw_root = Path(raw_root)
+        self.libero_root = Path(libero_root) if libero_root else None
         self._lengths: Dict[str, List[int]] = {}
 
     def path_for(self, task: Task) -> Path:
@@ -47,6 +48,31 @@ class LiberoHdf5Store:
                     int(f["data"][k].attrs["num_samples"]) for k in _demo_keys(f)
                 ]
         return self._lengths[task.task_id]
+
+    def eval_init_state(self, task: Task, episode_idx: int) -> Optional[np.ndarray]:
+        """Evaluation initial state ``episode_idx`` from the task's ``.pruned_init`` file."""
+        candidates = []
+        if self.libero_root is not None:
+            candidates.append(Path(self.libero_root) / task.init_states.file)
+        try:
+            from libero.libero import get_libero_path
+
+            candidates.append(
+                Path(get_libero_path("init_states"))
+                / Path(task.init_states.file).relative_to("init_files")
+            )
+        except Exception:
+            pass
+        for path in candidates:
+            if path.exists():
+                try:
+                    import torch
+
+                    arr = torch.load(path, weights_only=False, map_location="cpu")
+                    return np.asarray(arr)[episode_idx]
+                except Exception:
+                    continue
+        return None
 
     def episode_init_state(self, task: Task, episode_index: int) -> np.ndarray:
         import h5py
