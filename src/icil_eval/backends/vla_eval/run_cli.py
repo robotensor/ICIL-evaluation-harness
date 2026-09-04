@@ -37,6 +37,9 @@ def add_run_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--no-docker", action="store_true", help="run the benchmark in this environment"
     )
+    parser.add_argument(
+        "--docker-image", help="ICIL image to run the benchmark in (default: vla-eval base image)"
+    )
     parser.add_argument("--shards", type=int, default=1, help="number of parallel vla-eval shards")
     parser.add_argument(
         "--docker-volume", action="append", default=[], help="extra docker -v mounts"
