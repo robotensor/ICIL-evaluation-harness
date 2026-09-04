@@ -33,6 +33,15 @@ K=8 fits for a few short tasks only (`icil-eval capabilities`). K>1 is out of di
 checkpoint (trained with exactly one demonstration) and is reported as such. K=0 is a single
 all-zero, fully masked chunk (the encoder attends only to its 4 attention-sink tokens).
 
+## Render resolution
+
+vla-eval renders LIBERO at 256 px by default; BPP was trained on 128 px renders upsampled to
+224. On the smoke set (libero_goal, 2 tasks × 5 initial states, k1 and k1.wrong_task) three
+settings gave identical outcomes (k1 10/10, wrong-task 0/10): native 128 render
+(`--resolution 128`), 256 render with area-downsampling to 128 before the policy's resize
+(`--emulate-native 128`, the server default), and 256 render fed directly (`--emulate-native 0`).
+The default configuration keeps the native 128 render for fidelity to the training pipeline.
+
 ## Exposure
 
 The checkpoint stores per-demonstration training membership keyed by instruction string
