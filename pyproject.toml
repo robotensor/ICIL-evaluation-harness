@@ -62,9 +62,9 @@ dev = [
 icil-eval = "icil_eval.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/robofluent/ICIL-evaluation-harness"
-Documentation = "https://github.com/robofluent/ICIL-evaluation-harness/tree/main/docs"
-Issues = "https://github.com/robofluent/ICIL-evaluation-harness/issues"
+Homepage = "https://github.com/RoboTensor/ICIL-evaluation-harness"
+Documentation = "https://github.com/RoboTensor/ICIL-evaluation-harness/tree/main/docs"
+Issues = "https://github.com/RoboTensor/ICIL-evaluation-harness/issues"
 
 [tool.hatch.version]
 path = "src/icil_eval/__init__.py"
