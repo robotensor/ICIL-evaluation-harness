@@ -1,9 +1,11 @@
-# ICIL-evaluation-harness
+<p align="center">
+  <img src="docs/assets/banner.jpg" alt="ICIL-evaluation-harness" width="820">
+</p>
 
 **One global benchmark for In-Context Imitation Learning (ICIL), built from the tasks of existing robot benchmarks.**
 
-> Status: pre-alpha (v0.1.0 in development). The first integrated task provider is LIBERO; the
-> registry, standards and scorer are designed for many providers.
+> Status: v0.1.0. The first integrated task provider is LIBERO; the registry, standards and scorer
+> are designed for many providers.
 
 ## Why
 
