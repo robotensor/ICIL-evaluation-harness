@@ -43,7 +43,10 @@ def _build_parser() -> argparse.ArgumentParser:
     from icil_eval.backends.vla_eval.serve_cli import add_serve_arguments
 
     add_serve_arguments(serve)
-    sub.add_parser("run", help="run an evaluation through a rollout backend")
+    run = sub.add_parser("run", help="run an ICIL track through the vla-eval backend")
+    from icil_eval.backends.vla_eval.run_cli import add_run_arguments
+
+    add_run_arguments(run)
     sub.add_parser("report", help="score backend results into an ICIL results file and tables")
     return parser
 
@@ -83,6 +86,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         from icil_eval.backends.vla_eval.serve_cli import run_serve
 
         return run_serve(args)
+    if args.command == "run":
+        from icil_eval.backends.vla_eval.run_cli import run_run
+
+        return run_run(args)
     print(f"'{args.command}' is not implemented yet in this pre-release.", file=sys.stderr)
     return 2
 
