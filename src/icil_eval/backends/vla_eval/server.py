@@ -124,6 +124,17 @@ class ICILModelServer(PredictModelServer):  # type: ignore[misc]
         self._k_max_cache: Dict[str, int] = {}
         if self.log_path:
             self.log_path.parent.mkdir(parents=True, exist_ok=True)
+            meta = {
+                "policy_spec": self.policy_spec.to_dict(),
+                "registry_hash": self.registry_hash,
+                "seed": self.seed,
+                "default_track": self.default_track,
+                "default_condition": self.default_condition,
+                "camera_map": self.camera_map,
+            }
+            self.log_path.with_suffix(".meta.json").write_text(
+                json.dumps(meta, indent=1, default=str)
+            )
 
     # ------------------------------------------------------------------ vla-eval declarations
     def get_observation_params(self) -> Dict[str, Any]:

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://icil-eval.dev/schemas/results.schema.json",
+  "title": "ICIL results file",
+  "type": "object",
+  "required": ["schema_version", "harness_version", "backend", "date", "policy", "config", "profile", "episodes"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "harness_version": {"type": "string"},
+    "backend": {"type": "object", "required": ["name"], "properties": {"name": {"type": "string"}, "version": {"type": ["string", "null"]}}},
+    "date": {"type": "string"},
+    "git_hash": {"type": ["string", "null"]},
+    "policy": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {"name": {"type": ["string", "null"]}, "spec": {"type": ["object", "null"]}, "card": {"type": ["object", "null"]}}
+    },
+    "config": {"type": "object", "required": ["registry_hash"], "properties": {"registry_hash": {"type": "string"}}},
+    "profile": {
+      "type": "object",
+      "required": ["tracks", "coverage"],
+      "properties": {
+        "tracks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["conditions", "derived", "providers", "slices"],
+            "properties": {
+              "conditions": {"type": "object", "additionalProperties": {"$ref": "#/$defs/condition_summary"}},
+              "derived": {"$ref": "#/$defs/derived"}
+            }
+          }
+        },
+        "coverage": {
+          "type": "object",
+          "required": ["tasks_run", "episodes", "status_counts", "providers", "tracks", "query_exposure", "context_exposure"]
+        }
+      }
+    },
+    "episodes": {"type": "array", "items": {"$ref": "#/$defs/episode"}}
+  },
+  "$defs": {
+    "rate": {
+      "type": "object",
+      "required": ["value", "n", "ci95"],
+      "properties": {"value": {"type": ["number", "null"]}, "n": {"type": "integer"}, "ci95": {"type": "array", "minItems": 2, "maxItems": 2}}
+    },
+    "paired": {
+      "type": ["object", "null"],
+      "properties": {
+        "value": {"type": ["number", "null"]},
+        "n": {"type": "integer"},
+        "stderr": {"type": ["number", "null"]},
+        "n_discordant": {"type": "integer"},
+        "mcnemar_p": {"type": ["number", "null"]}
+      }
+    },
+    "condition_summary": {
+      "type": "object",
+      "required": ["success", "success_macro", "n_episodes", "n_ok", "n_tasks", "status_counts"],
+      "properties": {"success": {"$ref": "#/$defs/rate"}, "n_episodes": {"type": "integer"}, "n_ok": {"type": "integer"}, "n_tasks": {"type": "integer"}}
+    },
+    "derived": {
+      "type": "object",
+      "required": ["sr_at_k", "k_supported", "context_auc", "delta_context@1", "order_sensitivity@1", "context_gain"],
+      "properties": {
+        "sr_at_k": {"type": "object", "additionalProperties": {"type": ["number", "null"]}},
+        "k_supported": {"type": "array", "items": {"type": "integer"}},
+        "context_auc": {"type": ["number", "null"]},
+        "delta_context@1": {"$ref": "#/$defs/paired"},
+        "delta_context@kmax": {"$ref": "#/$defs/paired"},
+        "order_sensitivity@1": {"$ref": "#/$defs/paired"}
+      }
+    },
+    "episode": {
+      "type": "object",
+      "required": ["task_id", "provider", "suite", "track", "condition", "episode_idx", "status", "query_exposure", "context_exposure"],
+      "properties": {
+        "task_id": {"type": "string"},
+        "track": {"type": "string"},
+        "condition": {"type": "string"},
+        "k": {"type": ["integer", "null"]},
+        "episode_idx": {"type": "integer"},
+        "status": {"enum": ["ok", "unsupported", "not_applicable", "error", "missing"]},
+        "success": {"type": ["boolean", "null"]},
+        "progress": {"type": ["number", "null"]},
+        "context_refs": {"type": "array"},
+        "query_exposure": {"enum": ["seen", "unseen", "undisclosed"]},
+        "context_exposure": {"enum": ["seen", "unseen", "partial", "none", "undisclosed"]}
+      }
+    }
+  }
+}

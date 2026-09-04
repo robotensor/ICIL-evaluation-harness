@@ -26,3 +26,9 @@ that field and is listed here.
 - vla-eval backend model server `ICILModelServer`: context by reference from `EPISODE_START`
   fields, language stripping, every observation to the policy, per-episode JSONL log; CLI
   `icil-eval serve bpp`.
+- vla-eval benchmark wrapper `ICILBenchmark` (task x condition expansion, unique names, flat
+  `icil_*` fields, recorder hand-off, goal-predicate progress) and `ICILLIBEROBenchmark`
+  (configurable render resolution); run presets `smoke`/`quick`/`full`; CLI `icil-eval run`.
+- Scoring (S5): paired statistics (Wilson CI, paired differences with McNemar, task-cluster
+  bootstrap), model profile with coverage and exposure tags, `icil_results.json` schema, markdown
+  report; CLI `icil-eval report`.

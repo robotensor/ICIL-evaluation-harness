@@ -47,7 +47,12 @@ def _build_parser() -> argparse.ArgumentParser:
     from icil_eval.backends.vla_eval.run_cli import add_run_arguments
 
     add_run_arguments(run)
-    sub.add_parser("report", help="score backend results into an ICIL results file and tables")
+    report = sub.add_parser(
+        "report", help="score backend results into an ICIL results file and tables"
+    )
+    from icil_eval.scoring.report_cli import add_report_arguments
+
+    add_report_arguments(report)
     return parser
 
 
@@ -90,6 +95,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         from icil_eval.backends.vla_eval.run_cli import run_run
 
         return run_run(args)
+    if args.command == "report":
+        from icil_eval.scoring.report_cli import run_report
+
+        return run_report(args)
     print(f"'{args.command}' is not implemented yet in this pre-release.", file=sys.stderr)
     return 2
 
