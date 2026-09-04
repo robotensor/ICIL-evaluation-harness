@@ -21,6 +21,27 @@ def test_enumeration_ids_and_order(tasks):
     assert all(t.task_id.startswith(f"libero/{t.suite}/") for t in tasks.values())
 
 
+def test_language_is_filename_derived_like_libero(tasks):
+    from icil_eval.providers.libero.provider import stem_language
+
+    drawer = tasks["libero/libero_goal/open_the_middle_drawer_of_the_cabinet"]
+    assert drawer.language == "open the middle drawer of the cabinet"  # what LIBERO/vla-eval use
+    assert (
+        drawer.extra["bddl_language"] == "Open the middle layer of the drawer"
+    )  # BDDL text differs
+    assert (
+        stem_language("KITCHEN_SCENE10_close_the_top_drawer_of_the_cabinet")
+        == "close the top drawer of the cabinet"
+    )
+    assert (
+        stem_language("KITCHEN_SCENE1_put_the_black_bowl_on_top_of_the_cabinet")
+        == "put the black bowl on top of the cabinet"
+    )
+    assert stem_language(
+        "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket"
+    ).startswith("put both")
+
+
 def test_libero_goal_shares_one_layout_and_init(tasks):
     goal = [t for t in tasks.values() if t.suite == "libero_goal"]
     assert len({t.scene.layout_id for t in goal}) == 1

@@ -1341,7 +1341,7 @@ tasks:
 - task_id: libero/libero_90/KITCHEN_SCENE2_put_the_middle_black_bowl_on_the_plate
   provider: libero
   suite: libero_90
-  language: put the black bowl in the middle on the plate
+  language: put the middle black bowl on the plate
   embodiment:
     robot: panda
     gripper: panda_default
@@ -1635,7 +1635,7 @@ tasks:
 - task_id: libero/libero_90/KITCHEN_SCENE2_stack_the_middle_black_bowl_on_the_back_black_bowl
   provider: libero
   suite: libero_90
-  language: stack the black bowl in the middle on the black bowl at the front
+  language: stack the middle black bowl on the back black bowl
   embodiment:
     robot: panda
     gripper: panda_default
@@ -7928,7 +7928,7 @@ tasks:
 - task_id: libero/libero_90/STUDY_SCENE3_pick_up_the_red_mug_and_place_it_to_the_right_of_the_caddy
   provider: libero
   suite: libero_90
-  language: pick up the red mug and place it to the right compartment of the caddy
+  language: pick up the red mug and place it to the right of the caddy
   embodiment:
     robot: panda
     gripper: panda_default
@@ -8024,7 +8024,7 @@ tasks:
 - task_id: libero/libero_90/STUDY_SCENE3_pick_up_the_white_mug_and_place_it_to_the_right_of_the_caddy
   provider: libero
   suite: libero_90
-  language: pick up the white mug and place it to the right compartment of the caddy
+  language: pick up the white mug and place it to the right of the caddy
   embodiment:
     robot: panda
     gripper: panda_default

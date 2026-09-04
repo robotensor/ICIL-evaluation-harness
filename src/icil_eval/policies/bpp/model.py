@@ -89,13 +89,12 @@ class BPPModel:
         from omegaconf import OmegaConf
 
         has_pool = any(k.endswith("pool_modality_pos_embed") for k in state)
-        enc = self.cfg.model.obs_encoder
-        if "use_pool_modality_pos_embed" not in enc and not has_pool:
+        inner = self.cfg.model.obs_encoder.get("obs_encoder")  # the prompt tokenizer node
+        self.compat_overrides: Dict[str, Any] = {}
+        if inner is not None and "use_pool_modality_pos_embed" not in inner and not has_pool:
             OmegaConf.set_struct(self.cfg, False)
-            enc["use_pool_modality_pos_embed"] = False
-            self.compat_overrides = {"obs_encoder.use_pool_modality_pos_embed": False}
-        else:
-            self.compat_overrides = {}
+            inner["use_pool_modality_pos_embed"] = False
+            self.compat_overrides["obs_encoder.obs_encoder.use_pool_modality_pos_embed"] = False
 
     # ------------------------------------------------------------------ capability
     @property

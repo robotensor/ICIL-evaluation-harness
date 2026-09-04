@@ -6,7 +6,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the alphabet soup and place it in the basket
+  language: pick up the alphabet soup and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -110,7 +110,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the bbq sauce and place it in the basket
+  language: pick up the bbq sauce and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -214,7 +214,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_butter_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the butter and place it in the basket
+  language: pick up the butter and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -318,7 +318,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the chocolate pudding and place it in the basket
+  language: pick up the chocolate pudding and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -422,7 +422,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_cream_cheese_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the cream cheese and place it in the basket
+  language: pick up the cream cheese and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -526,7 +526,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_ketchup_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the ketchup and place it in the basket
+  language: pick up the ketchup and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -630,7 +630,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_milk_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the milk and place it in the basket
+  language: pick up the milk and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -734,7 +734,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_orange_juice_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the orange juice and place it in the basket
+  language: pick up the orange juice and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -838,7 +838,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_salad_dressing_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the salad dressing and place it in the basket
+  language: pick up the salad dressing and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default
@@ -942,7 +942,7 @@ tasks:
 - task_id: libero/libero_object/pick_up_the_tomato_sauce_and_place_it_in_the_basket
   provider: libero
   suite: libero_object
-  language: Pick the tomato sauce and place it in the basket
+  language: pick up the tomato sauce and place it in the basket
   embodiment:
     robot: panda
     gripper: panda_default

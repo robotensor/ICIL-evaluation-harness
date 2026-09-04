@@ -85,6 +85,20 @@ def _norm_pred(pred: List[str]) -> List[str]:
     return [pred[0].lower()] + list(pred[1:])
 
 
+def stem_language(stem: str) -> str:
+    """LIBERO's canonical instruction, derived from the BDDL file name.
+
+    Mirrors ``libero.libero.benchmark.grab_language_from_filename``: LIBERO-100 stems drop the
+    ``<SCENE>_`` prefix (``KITCHEN_SCENE10_`` has one more character), underscores become spaces.
+    This is the string every downstream tool (LIBERO, vla-eval, LeRobot, BPP checkpoints) uses; the
+    BDDL ``:language`` field occasionally differs and is kept as ``extra.bddl_language``.
+    """
+    if stem[0].isupper():
+        offset = 8 if "SCENE10" in stem else 7
+        return " ".join(stem[stem.find("SCENE") + offset :].split("_"))
+    return " ".join(stem.split("_"))
+
+
 def _scene_name(stem: str) -> Optional[str]:
     """LIBERO-100 stems start with a scene prefix (``KITCHEN_SCENE3_``, ``STUDY_SCENE1_``, ...)."""
     parts = stem.split("_")
@@ -278,7 +292,7 @@ class LiberoProvider(TaskProvider):
             task_id=f"{self.name}/{suite}/{stem}",
             provider=self.name,
             suite=suite,
-            language=problem.language,
+            language=stem_language(stem),
             embodiment=EMBODIMENT,
             scene=Scene(
                 layout_id=hash_obj(problem.layout_dict(), 12),

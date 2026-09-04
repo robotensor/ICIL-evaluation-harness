@@ -6,7 +6,7 @@ tasks:
 - task_id: libero/libero_goal/open_the_middle_drawer_of_the_cabinet
   provider: libero
   suite: libero_goal
-  language: Open the middle layer of the drawer
+  language: open the middle drawer of the cabinet
   embodiment:
     robot: panda
     gripper: panda_default
@@ -116,7 +116,7 @@ tasks:
 - task_id: libero/libero_goal/open_the_top_drawer_and_put_the_bowl_inside
   provider: libero
   suite: libero_goal
-  language: Open the top layer of the drawer and put the bowl inside
+  language: open the top drawer and put the bowl inside
   embodiment:
     robot: panda
     gripper: panda_default
@@ -228,7 +228,7 @@ tasks:
 - task_id: libero/libero_goal/push_the_plate_to_the_front_of_the_stove
   provider: libero
   suite: libero_goal
-  language: Push the plate to the front of the stove
+  language: push the plate to the front of the stove
   embodiment:
     robot: panda
     gripper: panda_default
@@ -340,7 +340,7 @@ tasks:
 - task_id: libero/libero_goal/put_the_bowl_on_the_plate
   provider: libero
   suite: libero_goal
-  language: Put the bowl on the plate
+  language: put the bowl on the plate
   embodiment:
     robot: panda
     gripper: panda_default
@@ -452,7 +452,7 @@ tasks:
 - task_id: libero/libero_goal/put_the_bowl_on_the_stove
   provider: libero
   suite: libero_goal
-  language: Put the bowl on the stove
+  language: put the bowl on the stove
   embodiment:
     robot: panda
     gripper: panda_default
@@ -564,7 +564,7 @@ tasks:
 - task_id: libero/libero_goal/put_the_bowl_on_top_of_the_cabinet
   provider: libero
   suite: libero_goal
-  language: Put the bowl on the top of the drawer
+  language: put the bowl on top of the cabinet
   embodiment:
     robot: panda
     gripper: panda_default
@@ -676,7 +676,7 @@ tasks:
 - task_id: libero/libero_goal/put_the_cream_cheese_in_the_bowl
   provider: libero
   suite: libero_goal
-  language: Put the cream cheese on the bowl
+  language: put the cream cheese in the bowl
   embodiment:
     robot: panda
     gripper: panda_default
@@ -788,7 +788,7 @@ tasks:
 - task_id: libero/libero_goal/put_the_wine_bottle_on_the_rack
   provider: libero
   suite: libero_goal
-  language: Put the wine bottle on the rack
+  language: put the wine bottle on the rack
   embodiment:
     robot: panda
     gripper: panda_default
@@ -900,7 +900,7 @@ tasks:
 - task_id: libero/libero_goal/put_the_wine_bottle_on_top_of_the_cabinet
   provider: libero
   suite: libero_goal
-  language: Put the wine bottle on the top of the drawer
+  language: put the wine bottle on top of the cabinet
   embodiment:
     robot: panda
     gripper: panda_default
@@ -1012,7 +1012,7 @@ tasks:
 - task_id: libero/libero_goal/turn_on_the_stove
   provider: libero
   suite: libero_goal
-  language: Turn on the stove
+  language: turn on the stove
   embodiment:
     robot: panda
     gripper: panda_default
