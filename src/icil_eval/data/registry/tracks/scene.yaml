@@ -1,0 +1,16 @@
+name: scene
+description: Same instruction demonstrated in a different layout. Context demonstrations come from
+  a task with identical language but a different layout; the wrong-task control uses a different
+  instruction from a different layout, so both factors are wrong.
+relation: same_instruction_other_layout
+language: none
+wrong_task_rule:
+  relation: other_instruction_other_layout
+  fallback: null
+  outcome_disjoint: true
+  feasible_in_query: false
+k_sweep: [0, 1, 2, 4, 8]
+conditions: [k0, k1, k2, k4, k8, k1.wrong_task, k1.shuffled_chunks, kmax.wrong_task]
+k_ref: 1
+context_chunk_seconds: 0.5
+version: 1

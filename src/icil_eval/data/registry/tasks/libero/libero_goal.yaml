@@ -1,0 +1,1122 @@
+schema_version: 1
+provider: libero
+suite: libero_goal
+n_tasks: 10
+tasks:
+- task_id: libero/libero_goal/open_the_middle_drawer_of_the_cabinet
+  provider: libero
+  suite: libero_goal
+  language: Open the middle layer of the drawer
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - open
+  goal:
+    predicates:
+    - - open
+      - wooden_cabinet_1_middle_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/open_the_middle_drawer_of_the_cabinet.pruned_init
+    n: 50
+    sha256: 977efe1216bee72bb4e9fa9ec4be1bcfe37fb00ece815eac117feba019b34b9f
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/open_the_middle_drawer_of_the_cabinet_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 20252c7cf98cd7437061f7f200ae7b6cb6219fabbd53b4536dfaa8abda6ab737
+    size_bytes: 702223367
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 832ab48ec476807c767e8985666e295700f92d1f8daeae1c34eee1e75293769b
+    obj_of_interest:
+    - wooden_cabinet_1_middle_region
+- task_id: libero/libero_goal/open_the_top_drawer_and_put_the_bowl_inside
+  provider: libero
+  suite: libero_goal
+  language: Open the top layer of the drawer and put the bowl inside
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: target
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - akita_black_bowl_1
+      - wooden_cabinet_1_top_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/open_the_top_drawer_and_put_the_bowl_inside.pruned_init
+    n: 50
+    sha256: 1cd5354ade9ab9f323a518515f961df96123b7daeca017df1f62d3e9ff18794f
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/open_the_top_drawer_and_put_the_bowl_inside_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 1b50d99a053a7e4547c9ae9ccd2e3cd762543d27be78f240f13440d7ae487ae8
+    size_bytes: 1017886342
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 3056e4dc72ee590432cfb18c610fd077a572c8b8f256e45328031005dd0b6757
+    obj_of_interest:
+    - akita_black_bowl_1
+    - wooden_cabinet_1_top_region
+- task_id: libero/libero_goal/push_the_plate_to_the_front_of_the_stove
+  provider: libero
+  suite: libero_goal
+  language: Push the plate to the front of the stove
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: target
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - plate_1
+      - main_table_stove_front_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/push_the_plate_to_the_front_of_the_stove.pruned_init
+    n: 50
+    sha256: 794beed679b18bbd7d9fb851c81877a974915ad63addff2d5ac5af0607fafac9
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/push_the_plate_to_the_front_of_the_stove_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 36b4e1bced49d2f4ff6b2fce6b1596a63978e14199e2513cd0df71e127bf47a6
+    size_bytes: 762855139
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 26f22f8ad39a4b2b344b049115c45661a877fa0b4821fb78246725e7e87d8c0b
+    obj_of_interest:
+    - plate_1
+    - main_table_stove_front_region
+- task_id: libero/libero_goal/put_the_bowl_on_the_plate
+  provider: libero
+  suite: libero_goal
+  language: Put the bowl on the plate
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: target
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - akita_black_bowl_1
+      - plate_1
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/put_the_bowl_on_the_plate.pruned_init
+    n: 50
+    sha256: ef3466ffad734754dc40eba1f6f5712e37aa46b9692c595e0da34f16d3a0c668
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/put_the_bowl_on_the_plate_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: e69528b0cf10dfc59b20698e12ec2affc03f3887309034d3eb74cac3ec929406
+    size_bytes: 468246288
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 358b7781437e412c67d6a7648c1c28796b6b1bf117a25e61316cb8dfeb940e5b
+    obj_of_interest:
+    - akita_black_bowl_1
+    - plate_1
+- task_id: libero/libero_goal/put_the_bowl_on_the_stove
+  provider: libero
+  suite: libero_goal
+  language: Put the bowl on the stove
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: target
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - akita_black_bowl_1
+      - flat_stove_1_cook_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/put_the_bowl_on_the_stove.pruned_init
+    n: 50
+    sha256: 7c1819725af8d08988078d6efb98ddb6dbefadb2e6d20df4ed23a2074f4d9ed1
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/put_the_bowl_on_the_stove_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: ff77d3bf0f89a147d423840ecbd842cd63c3c55aeead91f88dbc0917be473e99
+    size_bytes: 509123820
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: c6812d6c988be830412aa6fc4801af04d60f8c4565d2625763b6a0f2b843a87f
+    obj_of_interest:
+    - akita_black_bowl_1
+    - flat_stove_1_cook_region
+- task_id: libero/libero_goal/put_the_bowl_on_top_of_the_cabinet
+  provider: libero
+  suite: libero_goal
+  language: Put the bowl on the top of the drawer
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: target
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - akita_black_bowl_1
+      - wooden_cabinet_1_top_side
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/put_the_bowl_on_top_of_the_cabinet.pruned_init
+    n: 50
+    sha256: c0b7baf82f36f5304488bac91d788800a1c93d0a9fd19a73f448992d5366e145
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/put_the_bowl_on_top_of_the_cabinet_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: e14c84ebc820a13ef9a92ca82a7f04bb299f0ee96dfe9cc907bab71aeb2683b2
+    size_bytes: 510414285
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 2ffba859a154f50c3c99ffb3420743fa5aa65c70bf7d4cd26f5bc81d07be5713
+    obj_of_interest:
+    - akita_black_bowl_1
+    - wooden_cabinet_1_top_side
+- task_id: libero/libero_goal/put_the_cream_cheese_in_the_bowl
+  provider: libero
+  suite: libero_goal
+  language: Put the cream cheese on the bowl
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: target
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - cream_cheese_1
+      - akita_black_bowl_1
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/put_the_cream_cheese_in_the_bowl.pruned_init
+    n: 50
+    sha256: 524de11d240f33b93d5218b1779a1ded1037950fcf865f07d0c0029cc48cf3f5
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/put_the_cream_cheese_in_the_bowl_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: ee58a7d72c143a71bf1448674e70940ac7781c1d1bb10a1b0c7a5c69b26abbef
+    size_bytes: 535715512
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 81c54eace32b92466598103b3b6e8435ce90f10996ef18cec4a35fe6c4d31a98
+    obj_of_interest:
+    - cream_cheese_1
+    - akita_black_bowl_1
+- task_id: libero/libero_goal/put_the_wine_bottle_on_the_rack
+  provider: libero
+  suite: libero_goal
+  language: Put the wine bottle on the rack
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: target
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - wine_bottle_1
+      - wine_rack_1_top_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/put_the_wine_bottle_on_the_rack.pruned_init
+    n: 50
+    sha256: fa09aa4ade871c1c6be3dd8c93eb3437ea15190fd7dc73b8c986c8d2d3cfb062
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/put_the_wine_bottle_on_the_rack_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: f9092aa70734fc4083e97fc58c3ba25f87c614d18326182ddc7a455f0ab4da2e
+    size_bytes: 878958730
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 3d3ee18139056aa3780572cde17b1c50dc20ae0d299403f65e514e8471ba0e8e
+    obj_of_interest:
+    - wine_bottle_1
+    - wine_rack_1_top_region
+- task_id: libero/libero_goal/put_the_wine_bottle_on_top_of_the_cabinet
+  provider: libero
+  suite: libero_goal
+  language: Put the wine bottle on the top of the drawer
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: target
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - wine_bottle_1
+      - wooden_cabinet_1_top_side
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/put_the_wine_bottle_on_top_of_the_cabinet.pruned_init
+    n: 50
+    sha256: b8c659d17c722bf848065bec6b4d088ab8e90f48b5ae991b2f118b0f2b5bbe4b
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/put_the_wine_bottle_on_top_of_the_cabinet_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 7dc087a7596d5cbbe394f681b21a0be434438b0dca73ac430c293fe4c818404a
+    size_bytes: 540179470
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 2ef6f403a8451e216af44158c1a6c975cf8e5058ad02d78367ac0be443d096fe
+    obj_of_interest:
+    - wine_bottle_1
+    - wooden_cabinet_1_top_side
+- task_id: libero/libero_goal/turn_on_the_stove
+  provider: libero
+  suite: libero_goal
+  language: Turn on the stove
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d30114a2bdaf
+    init_id: 5af5edb1e9f5
+    scene_name: null
+    entities:
+    - akita_black_bowl_1
+    - bowl_drainer_1_left_region
+    - bowl_drainer_1_right_region
+    - cream_cheese_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - main_table
+    - main_table_akita_black_bowl_region
+    - main_table_cabinet_region
+    - main_table_cream_cheese_region
+    - main_table_plate_region
+    - main_table_stove_front_region
+    - main_table_stove_region
+    - main_table_wine_bottle_region
+    - main_table_wine_rack_region
+    - plate_1
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+    - wooden_cabinet_1
+    - wooden_cabinet_1_bottom_region
+    - wooden_cabinet_1_middle_region
+    - wooden_cabinet_1_top_side
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: main_table
+    category: table
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  - name: wooden_cabinet_1
+    category: wooden_cabinet
+    role: fixture
+  skills:
+  - turn_on
+  goal:
+    predicates:
+    - - turnon
+      - flat_stove_1
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 300
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_goal/turn_on_the_stove.pruned_init
+    n: 50
+    sha256: ed121db31d749647d70741c4c4ef0bd8e0876663986578795968e962d9b91340
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_goal/turn_on_the_stove_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 387fc10747696b80dea6ed8d7f2beaa162bf92ae11750b241073cbd33aac73d5
+    size_bytes: 447509922
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - same_instruction_other_layout
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: cbd2a0514d53226c5d09e17af40b22935d4cb6ff8fdaff0d55f555de1adecc13
+    obj_of_interest:
+    - flat_stove_1

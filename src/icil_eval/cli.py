@@ -27,12 +27,34 @@ def _build_parser() -> argparse.ArgumentParser:
     registry_sub = registry.add_subparsers(dest="registry_command", metavar="<subcommand>")
     build = registry_sub.add_parser("build", help="build registry entries for a provider")
     build.add_argument("provider", help="provider name, e.g. libero")
-    registry_sub.add_parser("validate", help="validate the committed registry against the schemas")
+    build.add_argument("--root", help="registry root to write (default: packaged registry)")
+    build.add_argument(
+        "--option",
+        "-o",
+        action="append",
+        default=[],
+        metavar="KEY=VALUE",
+        help="provider option, e.g. -o libero_root=/path -o offline=true",
+    )
+    validate = registry_sub.add_parser("validate", help="validate the registry against the schemas")
+    validate.add_argument("--root", help="registry root (default: packaged registry)")
 
     sub.add_parser("serve", help="serve an ICIL policy to a rollout backend")
     sub.add_parser("run", help="run an evaluation through a rollout backend")
     sub.add_parser("report", help="score backend results into an ICIL results file and tables")
     return parser
+
+
+def _parse_options(items: List[str]) -> dict:
+    """Parse ``KEY=VALUE`` provider options; ``true``/``false`` become booleans."""
+    out: dict = {}
+    for item in items:
+        if "=" not in item:
+            raise SystemExit(f"invalid option '{item}', expected KEY=VALUE")
+        key, value = item.split("=", 1)
+        low = value.lower()
+        out[key] = True if low == "true" else False if low == "false" else value
+    return out
 
 
 def main(argv: Optional[List[str]] = None) -> int:
@@ -45,11 +67,13 @@ def main(argv: Optional[List[str]] = None) -> int:
         if args.registry_command == "build":
             from icil_eval.registry.build import build_provider
 
-            return build_provider(args.provider)
+            return build_provider(
+                args.provider, root=args.root, provider_options=_parse_options(args.option)
+            )
         if args.registry_command == "validate":
             from icil_eval.registry.validate import validate_registry
 
-            return validate_registry()
+            return validate_registry(args.root)
         parser.parse_args([args.command, "--help"])
         return 2
     print(f"'{args.command}' is not implemented yet in this pre-release.", file=sys.stderr)

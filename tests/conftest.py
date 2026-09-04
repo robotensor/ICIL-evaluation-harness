@@ -8,12 +8,16 @@ from __future__ import annotations
 
 import importlib.util
 import os
+import tempfile
 from pathlib import Path
 
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
+
+# Isolate tests from the user's machine-local cache (Hub API responses, datasets, checkpoints).
+os.environ.setdefault("ICIL_EVAL_CACHE", tempfile.mkdtemp(prefix="icil-eval-test-cache-"))
 
 
 def _has_module(name: str) -> bool:

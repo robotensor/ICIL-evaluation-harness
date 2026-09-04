@@ -16,6 +16,15 @@ CONTAINER_SIDE_MODULES = [
     "icil_eval",
     "icil_eval.paths",
     "icil_eval.cli",
+    "icil_eval.registry.schema",
+    "icil_eval.registry.hashing",
+    "icil_eval.registry.relations",
+    "icil_eval.registry.io",
+    "icil_eval.registry.validate",
+    "icil_eval.context.types",
+    "icil_eval.context.sampler",
+    "icil_eval.context.transforms",
+    "icil_eval.providers.libero.bddl",
 ]
 
 

@@ -1,0 +1,16 @@
+name: configuration
+description: Same task, new initial configuration. Context demonstrations come from the query
+  task's own pool (never the evaluated initial state); the wrong-task control draws from another
+  task feasible in the same layout (outcome-disjoint), else from the same suite.
+relation: same_task
+language: none
+wrong_task_rule:
+  relation: other_task_same_layout
+  fallback: other_task_same_suite
+  outcome_disjoint: true
+  feasible_in_query: true
+k_sweep: [0, 1, 2, 4, 8]
+conditions: [k0, k1, k2, k4, k8, k1.wrong_task, k1.shuffled_chunks, kmax.wrong_task]
+k_ref: 1
+context_chunk_seconds: 0.5
+version: 1

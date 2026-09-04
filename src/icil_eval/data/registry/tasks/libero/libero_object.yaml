@@ -1,0 +1,1045 @@
+schema_version: 1
+provider: libero
+suite: libero_object
+n_tasks: 10
+tasks:
+- task_id: libero/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the alphabet soup and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 4ee0bb780a5d
+    init_id: c39ec046b439
+    scene_name: null
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - butter_1
+    - cream_cheese_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - milk_1
+    - salad_dressing_1
+    - tomato_sauce_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: target
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: butter_1
+    category: butter
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: milk_1
+    category: milk
+    role: distractor
+  - name: salad_dressing_1
+    category: salad_dressing
+    role: distractor
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - alphabet_soup_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: b9023e5546b239cacb2aaa3c76df3b73c3de6f97500fea5e27a0db9827002a19
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 42189d4415d4c51aaaf0708300653fccc39239cd3f2709079a713cd8d1678a8d
+    size_bytes: 780145352
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: df088984da13131f8332ee0f13a7896c6a97afd02ee5007a42e8fc5e0893571e
+    obj_of_interest:
+    - alphabet_soup_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the bbq sauce and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: b6906b8afb9a
+    init_id: e0cd1b3a542c
+    scene_name: null
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - bbq_sauce_1
+    - chocolate_pudding_1
+    - cream_cheese_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - ketchup_1
+    - salad_dressing_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: distractor
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: bbq_sauce_1
+    category: bbq_sauce
+    role: target
+  - name: chocolate_pudding_1
+    category: chocolate_pudding
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: ketchup_1
+    category: ketchup
+    role: distractor
+  - name: salad_dressing_1
+    category: salad_dressing
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - bbq_sauce_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: c524077b0c23006f28fc06760a5b5ab37eee67287b5329e84a34b0a8bd599b4a
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 90a722f2243a72878baff494d07ce7f4206cfc10307a4c82dcda5f2a5fabc060
+    size_bytes: 734212272
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 8a7e37b76fce5621e649e260dbcfcec7ce2f9a055ca09a4f1ebaf5ca74a739c2
+    obj_of_interest:
+    - bbq_sauce_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_butter_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the butter and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 90ad0ec27116
+    init_id: fff03580c707
+    scene_name: null
+    entities:
+    - basket_1
+    - basket_1_contain_region
+    - bbq_sauce_1
+    - butter_1
+    - chocolate_pudding_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - ketchup_1
+    - orange_juice_1
+    - tomato_sauce_1
+  objects:
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: bbq_sauce_1
+    category: bbq_sauce
+    role: distractor
+  - name: butter_1
+    category: butter
+    role: target
+  - name: chocolate_pudding_1
+    category: chocolate_pudding
+    role: distractor
+  - name: ketchup_1
+    category: ketchup
+    role: distractor
+  - name: orange_juice_1
+    category: orange_juice
+    role: distractor
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - butter_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_butter_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: f0925a8653c5902c5a4d78a2053365382ad7d05be7f059abe19c2004ffc5dc59
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_butter_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 07f48f1c0c06b5e10bc219e63701f0240d8205f85ccd0daab3ff9bd27bc35fb9
+    size_bytes: 785532626
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 5d8053b40ff33246fdbcc38548db84032c6bb647b4b88b6646d9cf6b73a5006c
+    obj_of_interest:
+    - butter_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the chocolate pudding and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 20d6925ed435
+    init_id: 8a44896cccc1
+    scene_name: null
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - bbq_sauce_1
+    - chocolate_pudding_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - ketchup_1
+    - orange_juice_1
+    - salad_dressing_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: distractor
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: bbq_sauce_1
+    category: bbq_sauce
+    role: distractor
+  - name: chocolate_pudding_1
+    category: chocolate_pudding
+    role: target
+  - name: ketchup_1
+    category: ketchup
+    role: distractor
+  - name: orange_juice_1
+    category: orange_juice
+    role: distractor
+  - name: salad_dressing_1
+    category: salad_dressing
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - chocolate_pudding_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: 1124189363e76609da182dd92217cd02c41be58e88c42e3949d23ba160da75a5
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: b5b57f36cd78e598e258e0e2a1a9d4e8d37d387901487eecd22d503e0e222302
+    size_bytes: 797322420
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 674ceabc400b7b16d46e8eaf678709d4a633235c7e0a80233775044fe38b19b0
+    obj_of_interest:
+    - chocolate_pudding_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_cream_cheese_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the cream cheese and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 3cb0293b8589
+    init_id: 9cfb5460bd54
+    scene_name: null
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - butter_1
+    - cream_cheese_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - milk_1
+    - orange_juice_1
+    - tomato_sauce_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: distractor
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: butter_1
+    category: butter
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: target
+  - name: milk_1
+    category: milk
+    role: distractor
+  - name: orange_juice_1
+    category: orange_juice
+    role: distractor
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - cream_cheese_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_cream_cheese_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: 5ea5483bca8abd80a8f1935e2c60570d60eaaf6a985c283d62805b46fb76aa94
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_cream_cheese_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 7ae50ed3a64bab8418fd6c8e346ba1c39da0fdaa62916a87b9d20f3745b45406
+    size_bytes: 718919781
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 7019f37ee158d67a21338a6df0c441dd8f84979b946b5e20bb49463ef0508ea2
+    obj_of_interest:
+    - cream_cheese_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_ketchup_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the ketchup and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: d93115a63d5d
+    init_id: e871e370944e
+    scene_name: null
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - bbq_sauce_1
+    - cream_cheese_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - ketchup_1
+    - milk_1
+    - salad_dressing_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: distractor
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: bbq_sauce_1
+    category: bbq_sauce
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: ketchup_1
+    category: ketchup
+    role: target
+  - name: milk_1
+    category: milk
+    role: distractor
+  - name: salad_dressing_1
+    category: salad_dressing
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - ketchup_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_ketchup_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: b987f7b11e8f9b47353cd7882e1da38ecdf6ec9715ad8a84346583ea71049fd3
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_ketchup_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: e0814effbe3a46777952950be0565577c348dad211327bc5d2a16f4eacc55ba1
+    size_bytes: 804674488
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 4a4e545483a3fe30cf0ef3dc05bfe5e6ad5e37c94b4376dfa73fe1b60e75b319
+    obj_of_interest:
+    - ketchup_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_milk_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the milk and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: e572612d6103
+    init_id: b610923c1038
+    scene_name: null
+    entities:
+    - basket_1
+    - basket_1_contain_region
+    - butter_1
+    - chocolate_pudding_1
+    - cream_cheese_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - milk_1
+    - orange_juice_1
+    - tomato_sauce_1
+  objects:
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: butter_1
+    category: butter
+    role: distractor
+  - name: chocolate_pudding_1
+    category: chocolate_pudding
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: milk_1
+    category: milk
+    role: target
+  - name: orange_juice_1
+    category: orange_juice
+    role: distractor
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - milk_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_milk_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: 4a86269faf4c98baff4c1428997ac828d00c56922a9a131be94e19b6027e1db2
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_milk_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: e56d954928e613f9db58085b7677ccf9c4824f1ab982265f71405d5bb14cfb4a
+    size_bytes: 727315202
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 9910aabf6717e8ba3e24a3f8500d9bce9ee075346ea6961e8fd766f1257d2996
+    obj_of_interest:
+    - milk_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_orange_juice_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the orange juice and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 29cf19ac08b4
+    init_id: d2e7526f855c
+    scene_name: null
+    entities:
+    - basket_1
+    - basket_1_contain_region
+    - bbq_sauce_1
+    - butter_1
+    - chocolate_pudding_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - ketchup_1
+    - orange_juice_1
+    - salad_dressing_1
+  objects:
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: bbq_sauce_1
+    category: bbq_sauce
+    role: distractor
+  - name: butter_1
+    category: butter
+    role: distractor
+  - name: chocolate_pudding_1
+    category: chocolate_pudding
+    role: distractor
+  - name: ketchup_1
+    category: ketchup
+    role: distractor
+  - name: orange_juice_1
+    category: orange_juice
+    role: target
+  - name: salad_dressing_1
+    category: salad_dressing
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - orange_juice_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_orange_juice_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: 35b19ffab1fe08c6457ebd732c37d04b9bc0d22b7ce7de015986092ddddea151
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_orange_juice_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 53e40490c62e94c678233eefbfd874a61c93d92c8088f59d426ae6c3fd90d288
+    size_bytes: 696180446
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 6298533e7bcfb83e40779a77fda39216e8cd53f22bf1af6388585dad0abb0b50
+    obj_of_interest:
+    - orange_juice_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_salad_dressing_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the salad dressing and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 516a77445293
+    init_id: 4c06b1f383e2
+    scene_name: null
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - cream_cheese_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - ketchup_1
+    - milk_1
+    - salad_dressing_1
+    - tomato_sauce_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: distractor
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: ketchup_1
+    category: ketchup
+    role: distractor
+  - name: milk_1
+    category: milk
+    role: distractor
+  - name: salad_dressing_1
+    category: salad_dressing
+    role: target
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: distractor
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - salad_dressing_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_salad_dressing_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: 6f6793ee550419a4a79dcb6ac83a9ba7bbf5e76e92fef26b82b6a7a10f72b04a
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_salad_dressing_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 45960606a85b9c68980eb8130e0fe16bf3621539cf5d4147f35aa8139573c5ac
+    size_bytes: 664188039
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 024978e9e8f43a49b49d0965f4f426d364ce056307f0fcf5733dc4682fac437a
+    obj_of_interest:
+    - salad_dressing_1
+    - basket_1
+- task_id: libero/libero_object/pick_up_the_tomato_sauce_and_place_it_in_the_basket
+  provider: libero
+  suite: libero_object
+  language: Pick the tomato sauce and place it in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 5cb457263526
+    init_id: 40ca2c74a93b
+    scene_name: null
+    entities:
+    - basket_1
+    - basket_1_contain_region
+    - bbq_sauce_1
+    - butter_1
+    - chocolate_pudding_1
+    - floor
+    - floor_bin_region
+    - floor_other_object_region_0
+    - floor_other_object_region_1
+    - floor_other_object_region_2
+    - floor_other_object_region_3
+    - floor_other_object_region_4
+    - floor_target_object_region
+    - milk_1
+    - orange_juice_1
+    - tomato_sauce_1
+  objects:
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: bbq_sauce_1
+    category: bbq_sauce
+    role: distractor
+  - name: butter_1
+    category: butter
+    role: distractor
+  - name: chocolate_pudding_1
+    category: chocolate_pudding
+    role: distractor
+  - name: milk_1
+    category: milk
+    role: distractor
+  - name: orange_juice_1
+    category: orange_juice
+    role: distractor
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: target
+  - name: floor
+    category: floor
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - tomato_sauce_1
+      - basket_1_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 280
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_object/pick_up_the_tomato_sauce_and_place_it_in_the_basket.pruned_init
+    n: 50
+    sha256: 2326da7ccacd3ebc75d80847f92d2e310b537b8dbbd8a76840a29b13f00f9a65
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_object/pick_up_the_tomato_sauce_and_place_it_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 43c52bdaa78b4c6aff3afb54d932d6a0e065f5c30c8e30a6c17f78749d487ea9
+    size_bytes: 735593408
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: b1f4bb69d256a05f693838de46182bb0d3de0de68eec350df1b5b1e76f6c136d
+    obj_of_interest:
+    - tomato_sauce_1
+    - basket_1

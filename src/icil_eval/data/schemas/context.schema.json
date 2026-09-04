@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://icil-eval.dev/schemas/context.schema.json",
+  "title": "ICIL context spec (one episode)",
+  "type": "object",
+  "required": ["track", "query_task_id", "condition", "k", "refs", "relation", "transform", "language", "modality", "seed", "episode_idx", "registry_hash", "context_hash"],
+  "properties": {
+    "track": {"type": "string"},
+    "query_task_id": {"type": "string"},
+    "condition": {"type": "string", "pattern": "^k(\\d+|max)(\\.[a-z_]+)?$"},
+    "k": {"type": "integer", "minimum": 0},
+    "refs": {"type": "array", "items": {"type": "array", "prefixItems": [{"type": "string"}, {"type": "integer", "minimum": 0}], "minItems": 2, "maxItems": 2}},
+    "relation": {"type": "string"},
+    "context_task_id": {"type": ["string", "null"]},
+    "transform": {"enum": ["identity", "shuffled_chunks", "reversed_actions"]},
+    "language": {"enum": ["none", "context", "query"]},
+    "modality": {"enum": ["sensorimotor", "robot_video", "human_video", "cross_robot", "language_demo"]},
+    "seed": {"type": "integer"},
+    "episode_idx": {"type": "integer", "minimum": 0},
+    "registry_hash": {"type": "string"},
+    "context_hash": {"type": "string"},
+    "permutation_seed": {"type": ["integer", "null"]}
+  }
+}

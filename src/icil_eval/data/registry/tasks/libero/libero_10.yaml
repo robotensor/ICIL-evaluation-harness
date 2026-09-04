@@ -1,0 +1,978 @@
+schema_version: 1
+provider: libero
+suite: libero_10
+n_tasks: 10
+tasks:
+- task_id: libero/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it
+  provider: libero
+  suite: libero_10
+  language: turn on the stove and put the moka pot on it
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 82ecc945865e
+    init_id: 207f50e9115c
+    scene_name: KITCHEN_SCENE3
+    entities:
+    - chefmate_8_frypan_1
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - kitchen_table
+    - kitchen_table_flat_stove_init_region
+    - kitchen_table_frypan_init_region
+    - kitchen_table_moka_pot_init_region
+    - moka_pot_1
+  objects:
+  - name: chefmate_8_frypan_1
+    category: chefmate_8_frypan
+    role: distractor
+  - name: moka_pot_1
+    category: moka_pot
+    role: target
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: kitchen_table
+    category: kitchen_table
+    role: fixture
+  skills:
+  - place_on
+  - turn_on
+  goal:
+    predicates:
+    - - turnon
+      - flat_stove_1
+    - - 'on'
+      - moka_pot_1
+      - flat_stove_1_cook_region
+    n_effective_predicates: 2
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.pruned_init
+    n: 50
+    sha256: 02a8401f8d59f5447fc8c5a16f4c158dd8c426c3eaed6779927a2a53e9abf3c5
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 6b30906a52a5741e98ef447d27e7066d6c0be4a5f7acd7ecaf1cb7468aca4aa9
+    size_bytes: 1319613988
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 491835cc2eb6956f7ce3d1ee4e266377116168fe453e6529fe105e3b0333635d
+    obj_of_interest:
+    - moka_pot_1
+    - flat_stove_1
+- task_id: libero/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it
+  provider: libero
+  suite: libero_10
+  language: put the black bowl in the bottom drawer of the cabinet and close it
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 109d6831d085
+    init_id: c5bd992c2219
+    scene_name: KITCHEN_SCENE4
+    entities:
+    - akita_black_bowl_1
+    - kitchen_table
+    - kitchen_table_akita_black_bowl_init_region
+    - kitchen_table_white_cabinet_init_region
+    - kitchen_table_wine_bottle_init_region
+    - kitchen_table_wine_rack_init_region
+    - white_cabinet_1
+    - white_cabinet_1_bottom_region
+    - white_cabinet_1_middle_region
+    - white_cabinet_1_top_side
+    - wine_bottle_1
+    - wine_rack_1
+    - wine_rack_1_top_region
+  objects:
+  - name: akita_black_bowl_1
+    category: akita_black_bowl
+    role: target
+  - name: wine_bottle_1
+    category: wine_bottle
+    role: distractor
+  - name: kitchen_table
+    category: kitchen_table
+    role: fixture
+  - name: white_cabinet_1
+    category: white_cabinet
+    role: fixture
+  - name: wine_rack_1
+    category: wine_rack
+    role: fixture
+  skills:
+  - close
+  - place_in
+  goal:
+    predicates:
+    - - close
+      - white_cabinet_1_bottom_region
+    - - in
+      - akita_black_bowl_1
+      - white_cabinet_1_bottom_region
+    n_effective_predicates: 2
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.pruned_init
+    n: 50
+    sha256: e98ded151f64a036c74c872336dd09b968c379f3c9db7bc333aba37e7c235b86
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 703950f48a3c49dfde61be489ade91527f16e1449b4f29a85f2e51153cef3638
+    size_bytes: 1235470452
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 5255fe54d7f25fad4dee8fa30a30033d8cb908f1708d953c91ab609264fb4fb8
+    obj_of_interest:
+    - akita_black_bowl_1
+    - white_cabinet_1
+- task_id: libero/libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it
+  provider: libero
+  suite: libero_10
+  language: put the yellow and white mug in the microwave and close it
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 82bfde5429e4
+    init_id: 42a8a225e99f
+    scene_name: KITCHEN_SCENE6
+    entities:
+    - kitchen_table
+    - kitchen_table_microwave_init_region
+    - kitchen_table_porcelain_mug_front_region
+    - kitchen_table_porcelain_mug_init_region
+    - kitchen_table_white_yellow_mug_init_region
+    - microwave_1
+    - microwave_1_heating_region
+    - microwave_1_top_side
+    - porcelain_mug_1
+    - white_yellow_mug_1
+  objects:
+  - name: porcelain_mug_1
+    category: porcelain_mug
+    role: distractor
+  - name: white_yellow_mug_1
+    category: white_yellow_mug
+    role: target
+  - name: kitchen_table
+    category: kitchen_table
+    role: fixture
+  - name: microwave_1
+    category: microwave
+    role: fixture
+  skills:
+  - close
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - white_yellow_mug_1
+      - microwave_1_heating_region
+    - - close
+      - microwave_1
+    n_effective_predicates: 2
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.pruned_init
+    n: 50
+    sha256: 6b75c8d4d1e1c40b5d99c78ceea380d99ccffb0a484a4cb2d3153488a0afbbe2
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 1cef1974f76176214dfd1d983a1961507c2b23d54be9dbf9abb2f243f3efacef
+    size_bytes: 1511189856
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420
+    obj_of_interest:
+    - white_yellow_mug_1
+    - microwave_1
+- task_id: libero/libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove
+  provider: libero
+  suite: libero_10
+  language: put both moka pots on the stove
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: c7dcf8c45210
+    init_id: e95b69661b45
+    scene_name: KITCHEN_SCENE8
+    entities:
+    - flat_stove_1
+    - flat_stove_1_cook_region
+    - kitchen_table
+    - kitchen_table_flat_stove_init_region
+    - kitchen_table_moka_pot_left_init_region
+    - kitchen_table_moka_pot_right_init_region
+    - moka_pot_1
+    - moka_pot_2
+  objects:
+  - name: moka_pot_1
+    category: moka_pot
+    role: target
+  - name: moka_pot_2
+    category: moka_pot
+    role: target
+  - name: flat_stove_1
+    category: flat_stove
+    role: fixture
+  - name: kitchen_table
+    category: kitchen_table
+    role: fixture
+  skills:
+  - place_on
+  - turn_on
+  goal:
+    predicates:
+    - - 'on'
+      - moka_pot_1
+      - flat_stove_1_cook_region
+    - - 'on'
+      - moka_pot_2
+      - flat_stove_1_cook_region
+    - - turnon
+      - flat_stove_1
+    n_effective_predicates: 2
+    initially_satisfied:
+    - - turnon
+      - flat_stove_1
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove.pruned_init
+    n: 50
+    sha256: 44f992e911c84a1340589510ecdaf947a4872966f7678c8364d8bb5d13dc4dac
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: e329bb21a8ded3457854faf6a23513c90cb4b34f0e40f3f4e9e70451fc9ba504
+    size_bytes: 2061429892
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: ae1299a707d3e810096ad648948c517de40474bcdacca93a15e17d191e34454a
+    obj_of_interest:
+    - moka_pot_1
+    - moka_pot_2
+    - flat_stove_1
+- task_id: libero/libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket
+  provider: libero
+  suite: libero_10
+  language: put both the alphabet soup and the cream cheese box in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 108a1ca62b23
+    init_id: a47843aedfc8
+    scene_name: LIVING_ROOM_SCENE1
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - cream_cheese_1
+    - ketchup_1
+    - living_room_table
+    - living_room_table_alphabet_soup_init_region
+    - living_room_table_basket_init_region
+    - living_room_table_cream_cheese_init_region
+    - living_room_table_ketchup_init_region
+    - living_room_table_tomato_sauce_init_region
+    - tomato_sauce_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: target
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: target
+  - name: ketchup_1
+    category: ketchup
+    role: distractor
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: distractor
+  - name: living_room_table
+    category: living_room_table
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - alphabet_soup_1
+      - basket_1_contain_region
+    - - in
+      - cream_cheese_1
+      - basket_1_contain_region
+    n_effective_predicates: 2
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.pruned_init
+    n: 50
+    sha256: 2113ea5923fcbbe1b57b428383934496072f062729d0b72d3021573d55d25abc
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 09fdc7cc0f546ab4b5232907c424670d08791476c69c1ee453b9ea4b70111cff
+    size_bytes: 1341166952
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: e27ab37f512fe42e35771d6130f531e6a9656929e7b4c60b348b81360cf5675d
+    obj_of_interest:
+    - alphabet_soup_1
+    - cream_cheese_1
+    - basket_1
+- task_id: libero/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket
+  provider: libero
+  suite: libero_10
+  language: put both the alphabet soup and the tomato sauce in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 2df6df6dce31
+    init_id: e7203247d0f8
+    scene_name: LIVING_ROOM_SCENE2
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - butter_1
+    - cream_cheese_1
+    - ketchup_1
+    - living_room_table
+    - living_room_table_alphabet_soup_init_region
+    - living_room_table_basket_init_region
+    - living_room_table_butter_init_region
+    - living_room_table_cream_cheese_init_region
+    - living_room_table_ketchup_init_region
+    - living_room_table_milk_init_region
+    - living_room_table_orange_juice_init_region
+    - living_room_table_tomato_sauce_init_region
+    - milk_1
+    - orange_juice_1
+    - tomato_sauce_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: target
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: butter_1
+    category: butter
+    role: distractor
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: distractor
+  - name: ketchup_1
+    category: ketchup
+    role: distractor
+  - name: milk_1
+    category: milk
+    role: distractor
+  - name: orange_juice_1
+    category: orange_juice
+    role: distractor
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: target
+  - name: living_room_table
+    category: living_room_table
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - alphabet_soup_1
+      - basket_1_contain_region
+    - - in
+      - tomato_sauce_1
+      - basket_1_contain_region
+    n_effective_predicates: 2
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.pruned_init
+    n: 50
+    sha256: 1899fe54c51e24a41d5f9e32254730d6777f4894ab68e0e873f1fa7ae2062030
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 3173ebc709b064683956b757ae8737909457d730aa305b23c5735292e59066af
+    size_bytes: 1467540242
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 2e661058917f683a25bce480015197f0a2c1911bcbc2b9dd9d947199069c9618
+    obj_of_interest:
+    - alphabet_soup_1
+    - tomato_sauce_1
+    - basket_1
+- task_id: libero/libero_10/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket
+  provider: libero
+  suite: libero_10
+  language: put both the cream cheese box and the butter in the basket
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 2df6df6dce31
+    init_id: e7203247d0f8
+    scene_name: LIVING_ROOM_SCENE2
+    entities:
+    - alphabet_soup_1
+    - basket_1
+    - basket_1_contain_region
+    - butter_1
+    - cream_cheese_1
+    - ketchup_1
+    - living_room_table
+    - living_room_table_alphabet_soup_init_region
+    - living_room_table_basket_init_region
+    - living_room_table_butter_init_region
+    - living_room_table_cream_cheese_init_region
+    - living_room_table_ketchup_init_region
+    - living_room_table_milk_init_region
+    - living_room_table_orange_juice_init_region
+    - living_room_table_tomato_sauce_init_region
+    - milk_1
+    - orange_juice_1
+    - tomato_sauce_1
+  objects:
+  - name: alphabet_soup_1
+    category: alphabet_soup
+    role: distractor
+  - name: basket_1
+    category: basket
+    role: distractor
+  - name: butter_1
+    category: butter
+    role: target
+  - name: cream_cheese_1
+    category: cream_cheese
+    role: target
+  - name: ketchup_1
+    category: ketchup
+    role: distractor
+  - name: milk_1
+    category: milk
+    role: distractor
+  - name: orange_juice_1
+    category: orange_juice
+    role: distractor
+  - name: tomato_sauce_1
+    category: tomato_sauce
+    role: distractor
+  - name: living_room_table
+    category: living_room_table
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - cream_cheese_1
+      - basket_1_contain_region
+    - - in
+      - butter_1
+      - basket_1_contain_region
+    n_effective_predicates: 2
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket.pruned_init
+    n: 50
+    sha256: f8ac06ea8f43bb328d40cba1e6a9767da2f8f5386fd7ff3f845c64a96bf6d2ce
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: ce03c7be607cdc3d55f634998eb15beee770006b053fbcd9cbfb207c8b72847a
+    size_bytes: 1300335262
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_task_same_suite
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 3f552805c7ab34c44debcf38a48b8131d6fee3011dd86c039650b84e0f77d058
+    obj_of_interest:
+    - cream_cheese_1
+    - butter_1
+    - basket_1
+- task_id: libero/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate
+  provider: libero
+  suite: libero_10
+  language: put the white mug on the left plate and put the yellow and white mug on the right plate
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 4061b0d4c750
+    init_id: 73d8f108683c
+    scene_name: LIVING_ROOM_SCENE5
+    entities:
+    - living_room_table
+    - living_room_table_plate_left_region
+    - living_room_table_plate_right_region
+    - living_room_table_porcelain_mug_init_region
+    - living_room_table_red_coffee_mug_init_region
+    - living_room_table_white_yellow_mug_init_region
+    - plate_1
+    - plate_2
+    - porcelain_mug_1
+    - red_coffee_mug_1
+    - white_yellow_mug_1
+  objects:
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: plate_2
+    category: plate
+    role: distractor
+  - name: porcelain_mug_1
+    category: porcelain_mug
+    role: target
+  - name: red_coffee_mug_1
+    category: red_coffee_mug
+    role: distractor
+  - name: white_yellow_mug_1
+    category: white_yellow_mug
+    role: target
+  - name: living_room_table
+    category: living_room_table
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - porcelain_mug_1
+      - plate_1
+    - - 'on'
+      - white_yellow_mug_1
+      - plate_2
+    n_effective_predicates: 2
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.pruned_init
+    n: 50
+    sha256: b6f20784b381c75d715f4fdaadda1fb460cbe24adcbad76f381a009419b8474e
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: a2a75bc6c301a914d0998ccac9dcf1d70d0f501897fbb6baf86aa61315b57b31
+    size_bytes: 1285266594
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 0c6749b920bff1e1efe47ffb0e0b801a3e6959a650e710f376dd2b812c74e865
+    obj_of_interest:
+    - plate_1
+    - plate_2
+    - white_yellow_mug_1
+    - porcelain_mug_1
+- task_id: libero/libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate
+  provider: libero
+  suite: libero_10
+  language: put the white mug on the plate and put the chocolate pudding to the right of the plate
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: 2fa7deab45a7
+    init_id: a0ac2534f732
+    scene_name: LIVING_ROOM_SCENE6
+    entities:
+    - chocolate_pudding_1
+    - living_room_table
+    - living_room_table_chocolate_pudding_init_region
+    - living_room_table_plate_init_region
+    - living_room_table_plate_left_region
+    - living_room_table_plate_right_region
+    - living_room_table_porcelain_mug_init_region
+    - living_room_table_red_coffee_mug_init_region
+    - plate_1
+    - porcelain_mug_1
+    - red_coffee_mug_1
+  objects:
+  - name: chocolate_pudding_1
+    category: chocolate_pudding
+    role: target
+  - name: plate_1
+    category: plate
+    role: distractor
+  - name: porcelain_mug_1
+    category: porcelain_mug
+    role: target
+  - name: red_coffee_mug_1
+    category: red_coffee_mug
+    role: distractor
+  - name: living_room_table
+    category: living_room_table
+    role: fixture
+  skills:
+  - place_on
+  goal:
+    predicates:
+    - - 'on'
+      - porcelain_mug_1
+      - plate_1
+    - - 'on'
+      - chocolate_pudding_1
+      - living_room_table_plate_right_region
+    n_effective_predicates: 2
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate.pruned_init
+    n: 50
+    sha256: 6e811394c4ff9a43ae23515d8512e9b657c04344b94dd5baed121b595490514f
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 75988131f8f443d68108bbfaacc22dab229ece93f141362524e69a2c49a23516
+    size_bytes: 1268066750
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - other_task_same_layout
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: true
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: dbc9464b424cdc9b771b92d0b8a8c185b1b539f6a4133b323dc858bcf8f6a9c2
+    obj_of_interest:
+    - plate_1
+    - chocolate_pudding_1
+    - porcelain_mug_1
+- task_id: libero/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy
+  provider: libero
+  suite: libero_10
+  language: pick up the book and place it in the back compartment of the caddy
+  embodiment:
+    robot: panda
+    gripper: panda_default
+    dof: 7
+    action_space: osc_pose_delta_7d
+    control_hz: 20.0
+  scene:
+    layout_id: bd643b04a93d
+    init_id: cdaae4865d09
+    scene_name: STUDY_SCENE1
+    entities:
+    - black_book_1
+    - desk_caddy_1
+    - desk_caddy_1_back_contain_region
+    - desk_caddy_1_front_contain_region
+    - desk_caddy_1_left_contain_region
+    - desk_caddy_1_right_contain_region
+    - study_table
+    - study_table_black_book_init_region
+    - study_table_desk_caddy_init_region
+    - study_table_desk_caddy_right_region
+    - study_table_white_yellow_mug_init_region
+    - white_yellow_mug_1
+  objects:
+  - name: black_book_1
+    category: black_book
+    role: target
+  - name: white_yellow_mug_1
+    category: white_yellow_mug
+    role: distractor
+  - name: desk_caddy_1
+    category: desk_caddy
+    role: fixture
+  - name: study_table
+    category: study_table
+    role: fixture
+  skills:
+  - place_in
+  goal:
+    predicates:
+    - - in
+      - black_book_1
+      - desk_caddy_1_back_contain_region
+    n_effective_predicates: 1
+    initially_satisfied: []
+  horizon:
+    max_steps: 520
+    n_steps_wait: 10
+  init_states:
+    file: init_files/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.pruned_init
+    n: 50
+    sha256: 6cd3937ba18d64e72223222af36888d26ea201840415adbc4dae590454d0a5a8
+    verified: true
+  demo_pool:
+    repo_id: yifengzhu-hf/LIBERO-datasets
+    path: libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_demo.hdf5
+    n: 50
+    format: libero_hdf5
+    revision: f13aa24a3da8c43c7225569f28c562979fa0e35a
+    sha256: 2e0127d0cf73afceacc2c0854e505d5743b6d3d5aaf5572c842f84c6a1c8173b
+    size_bytes: 940528916
+    lerobot_repo_id: null
+  bounds:
+    chance_success: null
+    expert_success: null
+  capabilities:
+    relations:
+    - same_task
+    - same_instruction_other_layout
+    - other_task_same_layout
+    - other_instruction_other_layout
+    prompt_modalities:
+    - sensorimotor
+    perturbations: []
+    progress_metric: false
+  source_version:
+    libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+    robosuite: 1.4.0
+    mujoco: 3.2.3
+    bddl: 1.0.1
+  extra:
+    bddl_sha256: 07ca32c940d70c065e870452ef9c63e6dfa1d8506e6a86cf9b3763f652ba2d9f
+    obj_of_interest:
+    - black_book_1
+    - desk_caddy_1

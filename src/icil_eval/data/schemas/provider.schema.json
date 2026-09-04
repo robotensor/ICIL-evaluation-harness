@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://icil-eval.dev/schemas/provider.schema.json",
+  "title": "ICIL registry provider info",
+  "type": "object",
+  "required": ["name", "description", "license", "url", "version", "suites", "n_tasks", "backend", "capability_matrix", "schema_version"],
+  "properties": {
+    "name": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "description": {"type": "string"},
+    "license": {"type": "string"},
+    "url": {"type": "string"},
+    "citation": {"type": ["string", "null"]},
+    "version": {"type": "object", "additionalProperties": {"type": "string"}},
+    "suites": {"type": "array", "items": {"type": "string"}},
+    "n_tasks": {"type": "integer", "minimum": 1},
+    "backend": {"type": "object", "required": ["backend"]},
+    "capability_matrix": {
+      "type": "object",
+      "additionalProperties": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}}
+    },
+    "schema_version": {"const": 1}
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://icil-eval.dev/schemas/track.schema.json",
+  "title": "ICIL track definition",
+  "type": "object",
+  "required": ["name", "description", "relation", "language", "wrong_task_rule", "k_sweep", "conditions", "k_ref", "version"],
+  "properties": {
+    "name": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "description": {"type": "string"},
+    "relation": {"type": "string"},
+    "language": {"enum": ["none", "context", "query"]},
+    "wrong_task_rule": {
+      "type": "object",
+      "required": ["relation"],
+      "properties": {
+        "relation": {"type": "string"},
+        "fallback": {"type": ["string", "null"]},
+        "outcome_disjoint": {"type": "boolean"},
+        "feasible_in_query": {"type": "boolean"}
+      }
+    },
+    "k_sweep": {"type": "array", "items": {"type": "integer", "minimum": 0}, "minItems": 1, "uniqueItems": true},
+    "conditions": {"type": "array", "items": {"type": "string", "pattern": "^k(\\d+|max)(\\.[a-z_]+)?$"}, "minItems": 1},
+    "k_ref": {"type": "integer", "minimum": 0},
+    "context_chunk_seconds": {"type": "number", "exclusiveMinimum": 0},
+    "version": {"type": "integer", "minimum": 1}
+  }
+}

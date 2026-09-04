@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://icil-eval.dev/schemas/tasks_file.schema.json",
+  "title": "ICIL registry tasks file (one provider suite)",
+  "type": "object",
+  "required": ["schema_version", "provider", "suite", "n_tasks", "tasks"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "provider": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "suite": {"type": "string"},
+    "n_tasks": {"type": "integer", "minimum": 1},
+    "tasks": {"type": "array", "items": {"$ref": "#/$defs/task"}}
+  },
+  "$defs": {
+    "predicate": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "task": {
+      "type": "object",
+      "required": ["task_id", "provider", "suite", "language", "embodiment", "scene", "objects", "skills",
+                   "goal", "horizon", "init_states", "demo_pool", "bounds", "capabilities", "source_version"],
+      "properties": {
+        "task_id": {"type": "string", "pattern": "^[a-z0-9_]+/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+        "provider": {"type": "string"},
+        "suite": {"type": "string"},
+        "language": {"type": "string"},
+        "embodiment": {
+          "type": "object",
+          "required": ["robot"],
+          "properties": {
+            "robot": {"type": "string"},
+            "gripper": {"type": ["string", "null"]},
+            "dof": {"type": ["integer", "null"]},
+            "action_space": {"type": ["string", "null"]},
+            "control_hz": {"type": ["number", "null"]}
+          }
+        },
+        "scene": {
+          "type": "object",
+          "required": ["layout_id", "init_id", "entities"],
+          "properties": {
+            "layout_id": {"type": "string", "pattern": "^[0-9a-f]{12}$"},
+            "init_id": {"type": "string", "pattern": "^[0-9a-f]{12}$"},
+            "scene_name": {"type": ["string", "null"]},
+            "entities": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "category", "role"],
+            "properties": {"role": {"enum": ["target", "fixture", "distractor"]}}
+          }
+        },
+        "skills": {"type": "array", "items": {"type": "string"}},
+        "goal": {
+          "type": "object",
+          "required": ["predicates", "n_effective_predicates"],
+          "properties": {
+            "predicates": {"type": "array", "items": {"$ref": "#/$defs/predicate"}, "minItems": 1},
+            "n_effective_predicates": {"type": "integer", "minimum": 0},
+            "initially_satisfied": {"type": "array", "items": {"$ref": "#/$defs/predicate"}}
+          }
+        },
+        "horizon": {
+          "type": "object",
+          "required": ["max_steps"],
+          "properties": {"max_steps": {"type": "integer", "minimum": 1}, "n_steps_wait": {"type": "integer", "minimum": 0}}
+        },
+        "init_states": {
+          "type": "object",
+          "required": ["file", "n"],
+          "properties": {
+            "file": {"type": "string"},
+            "n": {"type": "integer", "minimum": 1},
+            "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+            "verified": {"type": "boolean"}
+          }
+        },
+        "demo_pool": {
+          "type": "object",
+          "required": ["repo_id", "path", "n", "format"],
+          "properties": {
+            "repo_id": {"type": "string"},
+            "path": {"type": "string"},
+            "n": {"type": "integer", "minimum": 1},
+            "format": {"type": "string"},
+            "revision": {"type": ["string", "null"]},
+            "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+            "size_bytes": {"type": ["integer", "null"]},
+            "lerobot_repo_id": {"type": ["string", "null"]}
+          }
+        },
+        "bounds": {
+          "type": "object",
+          "properties": {
+            "chance_success": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+            "expert_success": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "required": ["relations", "prompt_modalities", "perturbations", "progress_metric"],
+          "properties": {
+            "relations": {"type": "array", "items": {"type": "string"}, "contains": {"const": "same_task"}},
+            "prompt_modalities": {
+              "type": "array",
+              "items": {"enum": ["sensorimotor", "robot_video", "human_video", "cross_robot", "language_demo"]}
+            },
+            "perturbations": {"type": "array", "items": {"type": "string"}},
+            "progress_metric": {"type": "boolean"}
+          }
+        },
+        "source_version": {"type": "object", "additionalProperties": {"type": "string"}},
+        "extra": {"type": "object"}
+      }
+    }
+  }
+}

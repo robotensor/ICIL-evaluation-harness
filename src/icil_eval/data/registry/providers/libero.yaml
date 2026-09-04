@@ -1,0 +1,26 @@
+name: libero
+description: LIBERO lifelong robot learning benchmark, original suites (Panda, OSC_POSE).
+license: MIT (code), Apache-2.0 (demonstrations on Hugging Face)
+url: https://github.com/Lifelong-Robot-Learning/LIBERO
+version:
+  libero_commit: 8f1084e3132a39270c3a13ebe37270a43ece2a01
+  robosuite: 1.4.0
+  mujoco: 3.2.3
+  bddl: 1.0.1
+suites:
+- libero_10
+- libero_90
+- libero_goal
+- libero_object
+- libero_spatial
+n_tasks: 130
+backend:
+  backend: vla_eval
+  image: ghcr.io/allenai/vla-evaluation-harness/libero:0.5.0
+capability_matrix:
+  configuration:
+    same_task: 130
+  scene:
+    same_instruction_other_layout: 31
+citation: 'Liu et al., LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning, NeurIPS 2023'
+schema_version: 1
