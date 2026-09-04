@@ -167,7 +167,9 @@ def test_context_by_reference_and_every_observation_reaches_policy(registry, tmp
     }
     sent, policy = run_episode(server, fields, n_steps=13)
     # context: two demos of the same task, deterministic, matching the sampler
-    assert len(policy.demos) == 2 and all(d.task == "Turn on the stove" for d in policy.demos)
+    assert len(policy.demos) == 2 and all(
+        d.task.lower() == "turn on the stove" for d in policy.demos
+    )
     assert policy.task.language is None  # language: none strips the instruction
     # every observation reached the policy; predict only every exec_horizon steps
     assert len(policy.observed) == 13 and all(o.language is None for o in policy.observed)
@@ -209,7 +211,7 @@ def test_kmax_condition_resolves_against_policy(registry):
     fields = {"icil_task_id": STOVE, "icil_condition": "kmax.wrong_task", "episode_idx": 1}
     sent, policy = run_episode(server, fields, n_steps=1)
     assert len(policy.demos) == 8  # 3 chunks each, 8 x 3 = 24 <= 50
-    assert all(d.task != "Turn on the stove" for d in policy.demos)
+    assert all(d.task.lower() != "turn on the stove" for d in policy.demos)
 
 
 def test_registry_hash_mismatch_is_an_error(registry, tmp_path):
