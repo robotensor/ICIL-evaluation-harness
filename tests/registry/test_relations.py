@@ -74,14 +74,13 @@ def test_compute_capabilities():
 
 def test_identical_goal_strings_are_distinct_outcomes_under_different_init():
     # LIBERO-Spatial: every task's goal is (On akita_black_bowl_1 plate_1); only the init differs.
-    a = make_task("bowl_on_stove", init="111111111111", goal=[["on", "bowl_1", "plate_1"]])
-    b = make_task("bowl_on_cabinet", init="222222222222", goal=[["on", "bowl_1", "plate_1"]])
+    a = make_task("bowl_on_stove", init="111111111111", goal=[["on", "obj_1", "plate_1"]])
+    b = make_task("bowl_on_cabinet", init="222222222222", goal=[["on", "obj_1", "plate_1"]])
     same_init_subgoal = make_task(
-        "sub", init="111111111111", goal=[["on", "bowl_1", "plate_1"], ["open", "d"]]
+        "sub", init="111111111111", goal=[["on", "obj_1", "plate_1"], ["turnon", "stove_1"]]
     )
     assert not goal_disjoint(a, b)
     assert outcome_disjoint(b, a)
     assert not outcome_disjoint(same_init_subgoal, a)
-    assert [t.stem for t in other_task_same_layout(a, [a, b, same_init_subgoal])] == [
-        "bowl_on_cabinet"
-    ]
+    pool = other_task_same_layout(a, [a, b, same_init_subgoal])
+    assert [t.stem for t in pool] == ["bowl_on_cabinet"]
