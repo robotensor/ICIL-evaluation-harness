@@ -70,6 +70,7 @@ def run_run(args: argparse.Namespace) -> int:
         query_tasks=_csv(args.query_tasks),
         conditions=_csv(args.conditions),
         episodes_per_task=args.episodes_per_task,
+        docker_image=args.docker_image,
         docker_volumes=args.docker_volume or None,
         docker_env=args.docker_env or None,
     )

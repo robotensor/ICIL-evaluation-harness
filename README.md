@@ -62,9 +62,57 @@ src/icil_eval/
 docs/spec/     the versioned standard
 ```
 
-## Quickstart
+## Quickstart (LIBERO + Behavior Prompting Policy)
 
-Coming with v0.1.0: `icil-eval serve bpp …` → `icil-eval run --provider libero --track configuration --preset smoke` → `icil-eval report results/`.
+The harness has three processes: a **policy server** (runs in the policy's own environment), the
+**benchmark** (vla-eval, in Docker or in an environment with the simulator), and the **scorer**.
+
+```bash
+# 0. install
+uv venv --python 3.10 .venv && source .venv/bin/activate && uv pip install -e ".[dev,schema]"
+
+# 1. data: LIBERO demonstrations (Apache-2.0) and the BPP checkpoint (MIT)
+hf download yifengzhu-hf/LIBERO-datasets --repo-type dataset --include 'libero_goal/*' \
+   --local-dir ~/.cache/icil-eval/raw/libero
+hf download austinpatel/libero --local-dir ~/.cache/icil-eval/checkpoints/austinpatel_libero
+
+# 2. serve the policy (inside the behavior_prompting conda env, GPU)
+pip install -e ".[server,bpp]"
+icil-eval serve bpp --ckpt ~/.cache/icil-eval/checkpoints/austinpatel_libero/libero_behavior_prompting.ckpt
+
+# 3. which K the checkpoint can hold per task (skips unsupported conditions before rollout)
+icil-eval capabilities --policy bpp --budget-chunks 50 --chunk-len 20 --provider libero
+
+# 4. run a track (Docker image built with docker/build.sh libero, or --no-docker with LIBERO installed)
+icil-eval run --provider libero --track configuration --suites libero_goal --preset smoke \
+   --capabilities ~/.cache/icil-eval/capabilities/bpp_libero.json --docker-image icil-eval/libero:dev
+
+# 5. score: icil_results.json + markdown tables (paired Δ_context, SR@K, coverage, exposure)
+icil-eval report ~/.cache/icil-eval/runs/libero_configuration_smoke
+```
+
+Presets: `smoke` (2 tasks × 5 initial states × {k1, k1.wrong_task}), `quick` (10 initial states,
+every condition), `full` (50 initial states). Use `--shards N` to run N vla-eval shards in
+parallel against one policy server.
+
+### What a result looks like
+
+`icil-eval report` on the smoke preset (BPP-LIBERO checkpoint, libero_goal, 2 tasks):
+
+| condition | success [Wilson 95%] | n |
+|---|---|---|
+| `k1` | 100.0% [72.2%, 100.0%] | 10/10 |
+| `k1.wrong_task` | 0.0% [0.0%, 27.8%] | 10/10 |
+
+Δ_context@1 (paired on identical initial states) = +100 pp, n=10, McNemar p=0.002. The checkpoint
+was trained on every LIBERO task, so all rows are tagged `query_exposure = seen`; the wrong-context
+gap, not raw success, is the in-context-learning evidence.
+
+## Standard documents
+
+`docs/spec/00-overview.md` maps the standard: S1 tasks & providers, S2 context, S3 policy protocol,
+S4 tracks, S5 metrics & results. Provider and policy guides live in `docs/providers/` and
+`docs/policies/`.
 
 ## License
 

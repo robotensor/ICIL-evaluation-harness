@@ -37,7 +37,8 @@ uv pip install -e ".[dev,schema]"
 ruff check . && ruff format --check .
 pytest
 # container-side subset under Python 3.8
-uv run --python 3.8 --with pytest --with numpy --with pyyaml pytest -m container
+uv run --python 3.8 --isolated --no-project --with pytest --with "numpy==1.24.4" \
+  --with pyyaml --with "vla-eval==0.5.0" --with-editable . python -m pytest -m container tests/container
 ```
 
 ## Commits and pull requests

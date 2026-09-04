@@ -35,5 +35,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
       - run: uv python install 3.8
-      - run: uv venv --python 3.8 && uv pip install -e . "numpy==1.22.4" pytest
+      - run: uv venv --python 3.8 && uv pip install -e . "numpy==1.24.4" "vla-eval==0.5.0" pytest
       - run: uv run pytest -m container tests/container

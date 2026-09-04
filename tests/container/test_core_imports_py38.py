@@ -33,6 +33,14 @@ def test_module_imports(module: str) -> None:
     importlib.import_module(module)
 
 
+@pytest.mark.parametrize(
+    "module", ["icil_eval.backends.vla_eval.benchmark", "icil_eval.backends.vla_eval.libero"]
+)
+def test_container_wrapper_imports_when_vla_eval_present(module: str) -> None:
+    pytest.importorskip("vla_eval")
+    importlib.import_module(module)
+
+
 def test_python_version_floor() -> None:
     assert sys.version_info >= (3, 8)
 
