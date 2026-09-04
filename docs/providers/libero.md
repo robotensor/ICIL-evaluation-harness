@@ -30,6 +30,13 @@ construction and is still verified per episode (`min_context_init_l2`).
 - `scene` — 31 query tasks in 13 instruction groups (29 from libero_90, plus
   `libero_goal/turn_on_the_stove` and one libero_10 task whose instruction recurs in libero_90).
 
+## Demonstration lengths and supported K
+
+With the 50-chunk prompt budget of the released BPP checkpoints (one chunk per 20 steps),
+`icil-eval capabilities` finds the largest K supported for every possible draw from each task's
+50 demonstrations: K=8 for 10 tasks, K=4 for 94, K=2 for 25, K=1 for 1 (long libero_10 demonstrations).
+Conditions above a task's K are skipped by the wrapper and reported `unsupported`.
+
 ## Backend binding
 
 vla-eval `LIBEROBenchmark` (via `ICILLIBEROBenchmark`, render resolution configurable; 128 = BPP's

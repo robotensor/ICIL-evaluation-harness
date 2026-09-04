@@ -7,6 +7,11 @@ that field and is listed here.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-09-04
+
+First release: the ICIL standard (S1–S5), the LIBERO provider, the Behavior Prompting Policy
+reference wrapper and the vla-eval backend, verified end to end (see `docs/results/`).
+
 ### Added
 - Project scaffold: package `icil_eval`, CLI `icil-eval`, Apache-2.0 license, CI.
 - Standard S1 (unified task schema, relations, provider contract, registry layout) and S2
