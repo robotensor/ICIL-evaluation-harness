@@ -47,6 +47,11 @@ def _build_parser() -> argparse.ArgumentParser:
     from icil_eval.backends.vla_eval.run_cli import add_run_arguments
 
     add_run_arguments(run)
+    caps = sub.add_parser("capabilities", help="compute per-task supported K for a context budget")
+    from icil_eval.policy.capabilities_cli import add_capabilities_arguments
+
+    add_capabilities_arguments(caps)
+
     report = sub.add_parser(
         "report", help="score backend results into an ICIL results file and tables"
     )
@@ -99,6 +104,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         from icil_eval.scoring.report_cli import run_report
 
         return run_report(args)
+    if args.command == "capabilities":
+        from icil_eval.policy.capabilities_cli import run_capabilities
+
+        return run_capabilities(args)
     print(f"'{args.command}' is not implemented yet in this pre-release.", file=sys.stderr)
     return 2
 

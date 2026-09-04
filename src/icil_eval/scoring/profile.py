@@ -23,15 +23,21 @@ def _ok(rows: Sequence[EpisodeRow]) -> List[EpisodeRow]:
     return [r for r in rows if r.status == "ok" and r.success is not None]
 
 
-def _condition_summary(rows: Sequence[EpisodeRow]) -> Dict[str, Any]:
+def _condition_summary(
+    rows: Sequence[EpisodeRow], registry: Optional[Registry] = None
+) -> Dict[str, Any]:
     ok = _ok(rows)
+    prog_rows = [
+        r for r in ok if registry is None or registry.tasks[r.task_id].capabilities.progress_metric
+    ]
     by_task = group_by(ok, lambda r: r.task_id)
     macro = cluster_bootstrap_mean({t: [float(r.success) for r in rs] for t, rs in by_task.items()})
     statuses = group_by(rows, lambda r: r.status)
     return {
         "success": rate([r.success for r in ok]),
         "success_macro": macro,
-        "progress": mean_or_none([r.progress for r in ok]),
+        "progress": mean_or_none([r.progress for r in prog_rows]),
+        "n_progress_tasks": len({r.task_id for r in prog_rows}),
         "n_episodes": len(rows),
         "n_ok": len(ok),
         "n_tasks": len(by_task),
@@ -146,7 +152,9 @@ def build_profile(
     for track, trows in sorted(by_track.items()):
         by_cond = _resolve_kmax_rows(trows)
         entry: Dict[str, Any] = {
-            "conditions": {c: _condition_summary(rs) for c, rs in sorted(by_cond.items())},
+            "conditions": {
+                c: _condition_summary(rs, registry) for c, rs in sorted(by_cond.items())
+            },
             "derived": _derived(by_cond, trows, registry),
             "providers": {},
             "slices": {},
@@ -154,13 +162,17 @@ def build_profile(
         for provider, prows in sorted(group_by(trows, lambda r: r.provider).items()):
             pcond = _resolve_kmax_rows(prows)
             entry["providers"][provider] = {
-                "conditions": {c: _condition_summary(rs) for c, rs in sorted(pcond.items())},
+                "conditions": {
+                    c: _condition_summary(rs, registry) for c, rs in sorted(pcond.items())
+                },
                 "derived": _derived(pcond, prows, registry),
             }
         for sl, srows in sorted(group_by(trows, slice_key).items()):
             scond = _resolve_kmax_rows(srows)
             entry["slices"][sl] = {
-                "conditions": {c: _condition_summary(rs) for c, rs in sorted(scond.items())},
+                "conditions": {
+                    c: _condition_summary(rs, registry) for c, rs in sorted(scond.items())
+                },
                 "derived": _derived(scond, srows, registry),
             }
         profile["tracks"][track] = entry

@@ -1,0 +1,10 @@
+# ICIL-evaluation-harness on top of vla-eval's LIBERO image (Python 3.8 conda env `libero`).
+# Build:  ./docker/build.sh libero        (builds a wheel first)
+# The wheel is installed with --no-deps: the image already pins numpy/pyyaml and the
+# container-side modules need nothing else.
+ARG BASE=ghcr.io/allenai/vla-evaluation-harness/libero:0.5.0
+FROM ${BASE}
+ARG WHEEL
+COPY ${WHEEL} /tmp/icil_eval.whl
+RUN conda run --no-capture-output -n libero pip install --no-deps /tmp/icil_eval.whl \
+    && conda run --no-capture-output -n libero python -c "import icil_eval.backends.vla_eval.benchmark, icil_eval.backends.vla_eval.libero; print('icil_eval ok')"
